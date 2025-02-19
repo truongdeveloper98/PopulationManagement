@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Target framework and project properties -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RuntimeIdentifiers>linux-x64;win-x64</RuntimeIdentifiers>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Package references -->
+  <ItemGroup>
+    <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.17.1" />
+    <PackageReference Include="IronPython" Version="3.4.2" />
+    <PackageReference Include="IronXL.Excel" Version="2025.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="9.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NPOI" Version="2.7.2" />
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+    <PackageReference Include="PasswordGenerator" Version="2.1.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="9.0.2" />
+    <PackageReference Include="System.Private.Uri" Version="4.3.2" />
+  </ItemGroup>
+
+  <!-- Python script files to be copied to the output directory -->
+  <ItemGroup>
+      <None Update="PythonScript/Logic/**">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="PythonScript/Constants/**">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="PythonScript/DTOs/**">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="PythonScript/Helpers/**">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="PythonScript/Libs/**">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="PythonScript/NewPython/AortaStenosis.py">
+         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+       </None>
+      <None Update="PythonScript/NewPython/AortaInsufficiens.py">
+         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+       </None>
+      <None Update="PythonScript/NewPython/AortaRootDimensen.py">
+         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+       </None>
+      <None Update="PythonScript/NewPython/LADimension.py">
+         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+       </None>
+  </ItemGroup>
+
+</Project>

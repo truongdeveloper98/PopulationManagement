@@ -1,0 +1,8 @@
+.ag-row .ag-cell {
+  display: flex;
+  align-items: center;
+}
+
+.icon-delete svg{
+  font-size: 20px!important;
+}

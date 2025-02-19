@@ -1,0 +1,35 @@
+.wrapper {
+  padding: 1rem;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.editor {
+  height: auto !important;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.editordarkmode {
+  height: auto !important;
+  width: 100%;
+  color: #fff;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.btn {
+  border: none;
+  color: #fff;
+  border-radius: 20px;
+  padding: 0.6rem 2rem;
+  background-color: royalblue;
+}

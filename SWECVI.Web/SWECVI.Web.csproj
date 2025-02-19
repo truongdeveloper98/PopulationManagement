@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!-- Target framework and project properties -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RuntimeIdentifiers>linux-x64;win-x64;osx-x64</RuntimeIdentifiers>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <SpaProxyServerUrl>https://localhost:44425</SpaProxyServerUrl>
+    <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+    <ValidateExecutableReferencesMatchSelfContained>false</ValidateExecutableReferencesMatchSelfContained>
+  </PropertyGroup>
+
+  <!-- Package References -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
+      <IncludeAssets>runtime; build; native; contentfiles; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+      <ExcludeAssets>analyzers</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.17.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.4.0" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="9.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="9.0.2" />
+    <PackageReference Include="System.Private.Uri" Version="4.3.2" />
+   </ItemGroup>
+
+  <!-- Project references -->
+  <ItemGroup>
+    <ProjectReference Include="..\SWECVI.ApplicationCore\SWECVI.ApplicationCore.csproj" />
+    <ProjectReference Include="..\SWECVI.Infrastructure\SWECVI.Infrastructure.csproj" />
+    <ProjectReference Include="..\SWECVI.Database\SWECVI.Database.csproj" />
+  </ItemGroup>
+
+  <!-- SPA source files exclusion and inclusion -->
+  <ItemGroup>
+      <!-- Don't publish the SPA source files, but do show them in the project files list -->
+      <Content Remove="$(SpaRoot)**" />
+      <None Remove="$(SpaRoot)**" />
+      <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <!-- Node.js environment setup for Debug configuration -->
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+      <Exec Command="node --version" ContinueOnError="true">
+          <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+      </Exec>
+      <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+      <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+      <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
+  <!-- Webpack build process for publishing -->
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+      <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+      <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" ContinueOnError="false" />
+      <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" ContinueOnError="false" />
+
+      <!-- Include the newly-built files in the publish output -->
+      <ItemGroup>
+          <DistFiles Include="$(SpaRoot)build\**" />
+          <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+              <RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
+              <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+              <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          </ResolvedFileToPublish>
+      </ItemGroup>
+  </Target>
+
+</Project>

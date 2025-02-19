@@ -1,0 +1,31 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 14px;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.actionItem {
+  padding: 4px;
+  margin: 4px;
+}
+
+.actionItem:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.darkMode .label,
+.darkMode .action,
+.darkMode .actionItem svg {
+  color: #fff;
+}
+
+.darkMode .actionItem:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
