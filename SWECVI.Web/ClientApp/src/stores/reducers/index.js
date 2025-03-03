@@ -20,6 +20,9 @@ import exportData from './exportData.reducer';
 import assessment from './assessment.reducer';
 import settings from './settings.reducer';
 import findings from './finding.reducer';
+import job from './job.reducer';
+import company from './company.reducer';
+import township from './township.reducer';
 
 const appReducer = combineReducers({
   auth,
@@ -40,6 +43,9 @@ const appReducer = combineReducers({
   findings,
   assessment,
   settings,
+  job,
+  company,
+  township
 });
 
 const rootReducer = (state, action) => {

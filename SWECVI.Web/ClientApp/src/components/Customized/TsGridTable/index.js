@@ -270,19 +270,6 @@ const TsGridTable = forwardRef(
                               )}
                             </TableCell>
                           ))}
-                          <TableCell>
-                            {onDelete && (
-                              <Box>
-                                <EditButton
-                                  onClick={() => onDelete(row.original.id, fetchData)}
-                                  confirmTitle='Are you sure you want to delete this "Department"?'
-                                  className="icon-delete"
-                                  color="error"
-                                  icon={<DeleteIcon />}
-                                />
-                              </Box>
-                            )}
-                          </TableCell>
                         </TableRow>
                         {subColumns && row.getIsExpanded() && (
                           <TableRow>

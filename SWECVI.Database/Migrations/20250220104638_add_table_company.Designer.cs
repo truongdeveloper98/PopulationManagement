@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SWECVI.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using SWECVI.Infrastructure.Data;
 namespace SWECVI.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250220104638_add_table_company")]
+    partial class add_table_company
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -288,52 +291,6 @@ namespace SWECVI.Database.Migrations
                     b.ToTable("Jobs");
                 });
 
-            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.PaymentInformation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AccountName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BankAccountNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BankBranch")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BankName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsAutomaticAccounting")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsAutomaticTransactions")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PaymentInformations");
-                });
-
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.SystemLog", b =>
                 {
                     b.Property<int>("Id")
@@ -365,44 +322,6 @@ namespace SWECVI.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SystemLogs");
-                });
-
-            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.TownShip", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TownShipId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("TownShips");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.User", b =>
@@ -501,17 +420,6 @@ namespace SWECVI.Database.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.TownShip", b =>
-                {
-                    b.HasOne("SWECVI.ApplicationCore.Entities.Company", "Company")
-                        .WithMany("TownShips")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.User", b =>
                 {
                     b.HasOne("SWECVI.ApplicationCore.Entities.AppUser", "Identity")
@@ -521,11 +429,6 @@ namespace SWECVI.Database.Migrations
                         .IsRequired();
 
                     b.Navigation("Identity");
-                });
-
-            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Company", b =>
-                {
-                    b.Navigation("TownShips");
                 });
 #pragma warning restore 612, 618
         }

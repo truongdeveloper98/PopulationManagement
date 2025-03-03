@@ -23,65 +23,47 @@ import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
 import REG_EXP from 'constants/regExp';
-import useHospitalDetail from './hooks/useHospitalDetail';
+import useJobDetail from './hooks/useJobDetail';
+import { namespace } from 'stylis';
 
-const hospitalSchema = Yup.object().shape({
-  hospitalName: Yup.string()
-    .matches(REG_EXP.hospitalName, 'Hospital Name is not valid')
+const jobSchema = Yup.object().shape({
+  name: Yup.string()
+    .matches(REG_EXP.jobName, 'Job Name is not valid')
     .required('Required'),
-  adminEmail: Yup.string().email().required('Required'),
-  adminPassword: Yup.string().required('Required'),
+  description: Yup.string().required("Required"),
+
 });
 
-const regions = [{ id: 1, value: 'Sweden' }];
 
-function HospitalDetail() {
+function JobDetail() {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
   const { t } = useTranslation();
   const params = useParams();
   const {
-    hospital, handleCancel, handleSubmitForm, openBackdrop, regionValue,
-  } = useHospitalDetail();
+    job, handleCancel, handleSubmitForm, openBackdrop, 
+  } = useJobDetail();
 
   return (
     <BaseLayout>
       <Formik
         enableReinitialize
         initialValues={{
-          hospitalName: hospital?.hospitalName,
-          // description: hospital?.decription,
-          adminEmail: !params?.id ? hospital?.adminEmail : 'demo@gmail.com',
-          adminPassword: !params?.id ? hospital?.adminPassword : 'Asdfgh1@3',
-          region: params?.id ? regionValue : 'Sweden',
-          connectionString: hospital?.connectionString,
+          name: job?.name,
+          description: job?.description,
         }}
-        validationSchema={hospitalSchema}
+        validationSchema={jobSchema}
         onSubmit={(values) => {
           const {
-            hospitalName, adminEmail, adminPassword, region, connectionString,
+            name, description,
           } = values;
 
-          const data = params?.id
-            ? {
-              hospitalName,
-              indexRegion: regions.find((item) => item.value === region).id,
-              connectionString,
-            }
-            : {
-              hospitalName,
-              adminEmail,
-              adminPassword,
-              indexRegion: regions.find((item) => item.value === region).id,
-              connectionString: `Server=${
-                process.env?.REACT_APP_CONNECTION_IP
-              };Database=${hospitalName.replace(
-                /\s/g,
-                '',
-              )};Persist Security Info=True;User ID=sa;Password=Asdfgh1@3;TrustServerCertificate=true`,
+          const data = 
+            {
+              ...values,
             };
           handleSubmitForm(data);
-          // console.log(data);
+          //console.log(data);
         }}
         // validateOnChange={false}
       >
@@ -110,65 +92,35 @@ function HospitalDetail() {
               <Card id="basic-info" sx={{ overflow: 'visible' }}>
                 <MDBox p={3}>
                   <MDTypography variant="h5">
-                    {params?.id ? t('EditHospital') : t('CreateHospital')}
+                    {params?.id ? t('EditJob') : t('CreateJob')}
                   </MDTypography>
                 </MDBox>
                 <MDBox component="form" pb={3} px={3}>
                   <Grid container spacing={1}>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.hospitalName}
-                name="hospitalName"
-                label="Hospital Name"
-                placeholder="Hospital Name"
+                value={values.name}
+                name="name"
+                label="Job Name"
+                placeholder="Job Name"
                 onChange={handleChange}
-                error={errors.hospitalName}
+                error={errors.name}
               />
                     </Grid>
-              <Grid item xs={12} sm={6}>
-                      <Selector
-                label="Region"
-                options={regions.map((item) => item.value)}
-                value={values.region}
-                onChange={(value) => setFieldValue('region', value)}
+                    <Grid item xs={12} sm={6}>
+                    <FormField
+                value={values.description}
+                name="description"
+                label="Job Description"
+                placeholder="Job Description"
+                onChange={handleChange}
+                error={errors.description}
               />
                       {/* {errors?.region && <FormHelperText error>{errors?.region}</FormHelperText>} */}
                     </Grid>
                     {!params?.id && (
                     <Grid item xs={12} sm={6}>
-              <FormField
-                value={values.adminEmail}
-                name="adminEmail"
-                label="Admin Email"
-                placeholder="Admin Email"
-                onChange={handleChange}
-                error={errors.adminEmail}
-              />
-            </Grid>
-                    )}
-                    {!params?.id && (
-                    <Grid item xs={12} sm={6}>
-              <FormField
-                value={values.adminPassword}
-                type="password"
-                name="adminPassword"
-                label="Admin Password"
-                placeholder="Admin Password"
-                onChange={handleChange}
-                error={errors.adminPassword}
-              />
-            </Grid>
-                    )}
-                    {params?.id && (
-                    <Grid item xs={12}>
-              <FormField
-                value={values.connectionString}
-                name="connectionString"
-                label="Connection String"
-                placeholder="Connection String"
-                onChange={handleChange}
-                error={errors.connectionString}
-              />
+              
             </Grid>
                     )}
                     {/*
@@ -208,4 +160,4 @@ function HospitalDetail() {
   );
 }
 
-export default HospitalDetail;
+export default JobDetail;

@@ -19,6 +19,14 @@ namespace SWECVI.Web.DependencyInjection
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IJobRepository, JobRepository>();
+            services.AddScoped<IJobService, JobService>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<ITownShipRepository, TownShipRepository>();
+            services.AddScoped<ITownShipService, TownShipService>();
+            services.AddScoped<IPaymentInformationRepository, PaymentInformationRepository>();
+            services.AddScoped<IPaymentInformationService, PaymentInformationService>();
           
             // for caching
             services.AddScoped<ICacheProvider, CacheProvider>();
