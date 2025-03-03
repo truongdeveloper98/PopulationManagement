@@ -23,72 +23,57 @@ import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
 import REG_EXP from 'constants/regExp';
-import useHospitalDetail from './hooks/useHospitalDetail';
+import useTownshipDetail from './hooks/useTownshipDetail';
+import { useSelector } from 'react-redux';
 
-const hospitalSchema = Yup.object().shape({
-  hospitalName: Yup.string()
-    .matches(REG_EXP.hospitalName, 'Hospital Name is not valid')
+
+const townshipSchema = Yup.object().shape({
+  name: Yup.string()
+    .matches(REG_EXP.townshipName, 'Township Name is not valid')
     .required('Required'),
-  adminEmail: Yup.string().email().required('Required'),
-  adminPassword: Yup.string().required('Required'),
+  townshipId: Yup.string().required("Required"),
+  companyId: Yup.string().required("Required")
 });
 
-const regions = [{ id: 1, value: 'Sweden' }];
 
-function HospitalDetail() {
+function TownshipDetail() {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
   const { t } = useTranslation();
   const params = useParams();
   const {
-    hospital, handleCancel, handleSubmitForm, openBackdrop, regionValue,
-  } = useHospitalDetail();
+    township, handleCancel, handleSubmitForm, openBackdrop
+  } = useTownshipDetail();
+
+  const townships = useSelector((state) => state.township.townshipSelections) || [];
 
   return (
     <BaseLayout>
       <Formik
         enableReinitialize
         initialValues={{
-          hospitalName: hospital?.hospitalName,
-          // description: hospital?.decription,
-          adminEmail: !params?.id ? hospital?.adminEmail : 'demo@gmail.com',
-          adminPassword: !params?.id ? hospital?.adminPassword : 'Asdfgh1@3',
-          region: params?.id ? regionValue : 'Sweden',
-          connectionString: hospital?.connectionString,
+          name: township?.name,
+          townshipId: township?.townShipId,
+          companyId: township?.companyName,
         }}
-        validationSchema={hospitalSchema}
+        validationSchema={townshipSchema}
         onSubmit={(values) => {
           const {
-            hospitalName, adminEmail, adminPassword, region, connectionString,
+            name, townshipId, companyId
           } = values;
 
-          const data = params?.id
-            ? {
-              hospitalName,
-              indexRegion: regions.find((item) => item.value === region).id,
-              connectionString,
-            }
-            : {
-              hospitalName,
-              adminEmail,
-              adminPassword,
-              indexRegion: regions.find((item) => item.value === region).id,
-              connectionString: `Server=${
-                process.env?.REACT_APP_CONNECTION_IP
-              };Database=${hospitalName.replace(
-                /\s/g,
-                '',
-              )};Persist Security Info=True;User ID=sa;Password=Asdfgh1@3;TrustServerCertificate=true`,
-            };
+          const data =
+          {
+            ...values,
+          };
           handleSubmitForm(data);
-          // console.log(data);
         }}
-        // validateOnChange={false}
       >
         {({
           values, errors, handleChange, handleSubmit, setFieldValue,
         }) => (
           <>
+          {console.log(12344, values)}
             <Grid item xs={12} md={5} sx={{ textAlign: 'right', paddingBottom: 1 }}>
               <MDButton
                 onClick={handleCancel}
@@ -110,66 +95,47 @@ function HospitalDetail() {
               <Card id="basic-info" sx={{ overflow: 'visible' }}>
                 <MDBox p={3}>
                   <MDTypography variant="h5">
-                    {params?.id ? t('EditHospital') : t('CreateHospital')}
+                    {params?.id ? t('EditTownship') : t('CreateTownship')}
                   </MDTypography>
                 </MDBox>
                 <MDBox component="form" pb={3} px={3}>
                   <Grid container spacing={1}>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.hospitalName}
-                name="hospitalName"
-                label="Hospital Name"
-                placeholder="Hospital Name"
-                onChange={handleChange}
-                error={errors.hospitalName}
-              />
+                        value={values?.townshipId}
+                        name="townshipId"
+                        label="Township Id"
+                        placeholder="Township Id"
+                        onChange={handleChange}
+                        error={errors.townshipId}
+                      />
                     </Grid>
-              <Grid item xs={12} sm={6}>
-                      <Selector
-                label="Region"
-                options={regions.map((item) => item.value)}
-                value={values.region}
-                onChange={(value) => setFieldValue('region', value)}
-              />
+                    <Grid item xs={12} sm={6}>
+                      <FormField
+                        value={values?.name}
+                        name="name"
+                        label="Township Name"
+                        placeholder="Township Name"
+                        onChange={handleChange}
+                        error={errors.name}
+                      />
                       {/* {errors?.region && <FormHelperText error>{errors?.region}</FormHelperText>} */}
                     </Grid>
-                    {!params?.id && (
                     <Grid item xs={12} sm={6}>
-              <FormField
-                value={values.adminEmail}
-                name="adminEmail"
-                label="Admin Email"
-                placeholder="Admin Email"
-                onChange={handleChange}
-                error={errors.adminEmail}
-              />
-            </Grid>
-                    )}
+                      <Selector
+                        label="Company"
+                        options={townships.map((item) => item.name)}
+                        value={values?.companyId}
+                        onChange={(value) =>
+                        {
+                           setFieldValue('companyId', value)
+                        }}
+                      />
+                    </Grid>
                     {!params?.id && (
-                    <Grid item xs={12} sm={6}>
-              <FormField
-                value={values.adminPassword}
-                type="password"
-                name="adminPassword"
-                label="Admin Password"
-                placeholder="Admin Password"
-                onChange={handleChange}
-                error={errors.adminPassword}
-              />
-            </Grid>
-                    )}
-                    {params?.id && (
-                    <Grid item xs={12}>
-              <FormField
-                value={values.connectionString}
-                name="connectionString"
-                label="Connection String"
-                placeholder="Connection String"
-                onChange={handleChange}
-                error={errors.connectionString}
-              />
-            </Grid>
+                      <Grid item xs={12} sm={6}>
+
+                      </Grid>
                     )}
                     {/*
                     <Grid item xs={12}>
@@ -208,4 +174,4 @@ function HospitalDetail() {
   );
 }
 
-export default HospitalDetail;
+export default TownshipDetail;

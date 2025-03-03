@@ -19,7 +19,7 @@ public class UserController : ControllerBase
 
 
     [HttpPost]
-    [Authorize(Roles = "SuperAdmin")]
+    [AllowAnonymous]
     [Route("api/user-management/users")]
     public async Task<IActionResult> CreateUser([FromBody] UserInformationDto userModel)
     {
@@ -67,7 +67,7 @@ public class UserController : ControllerBase
 
     [Authorize(Roles = "HospitalAdmin,SuperAdmin")]
     [HttpPost]
-    [Route("api/user-management/users/{id}/inactive")]
+    [Route("api/user- /users/{id}/inactive")]
     public async Task<IActionResult> InactiveUser(int id)
     {
         try
@@ -94,7 +94,7 @@ public class UserController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
-    }
+    } 
 
     [Route("api/user-management/users/{id}")]
     [HttpGet]

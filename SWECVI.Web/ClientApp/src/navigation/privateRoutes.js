@@ -43,12 +43,18 @@ import ReferencesDetail from "features/references-detail";
 import ManufacturerDicomDetail from "features/manufacturer-dicom-detail";
 // import ExportData from "features/export-data";
 import Assessment from "features/assessment";
+import Job from "features/job";
 import AssessmentDetail from "features/assessment-detail";
 import ParameterSettings from "features/settings";
 import ParameterSettingsDetail from "features/settings-detail";
 import FindingStructure from "features/finding-structure";
 import FindingDetail from "features/findings-detail";
 import PAGES from "./pages";
+import JobDetail from "features/job-detail";
+import Company from "features/company";
+import CompanyDetail from "features/company-detail";
+import Township from "features/township"
+import TownshipDetail from "features/township-detail";
 
 const routes = [
   {
@@ -108,6 +114,33 @@ const routes = [
     route: PAGES.hospital,
     icon: <Icon fontSize="medium">people</Icon>,
     component: <Hospital />,
+  },
+  {
+    type: "tab",
+    name: "Job",
+    key: "job",
+    fillter: "hospital",
+    route: PAGES.job,
+    icon: <Icon fontSize="medium">people</Icon>,
+    component: <Job />,
+  },
+  {
+    type: "tab",
+    name: "Company",
+    key: "company",
+    fillter: "hospital",
+    route: PAGES.company,
+    icon: <Icon fontSize="medium">people</Icon>,
+    component: <Company />,
+  },
+  {
+    type: "tab",
+    name: "Township",
+    key: "township",
+    fillter: "hospital",
+    route: PAGES.township,
+    icon: <Icon fontSize="medium">people</Icon>,
+    component: <Township />,
   },
   {
     type: "tab",
@@ -207,6 +240,42 @@ const routes = [
     key: "edit-references",
     route: `${PAGES.editReferences}/:id`,
     component: <ReferencesDetail />,
+  },
+  {
+    type: "page",
+    key: "new-job",
+    route: PAGES.newJob,
+    component: <JobDetail />,
+  },
+  {
+    type: "page",
+    key: "edit-jobs",
+    route: `${PAGES.editJob}/:id`,
+    component: <JobDetail />,
+  },
+  {
+    type: "page",
+    key: "new-company",
+    route: PAGES.newCompany,
+    component: <CompanyDetail />,
+  },
+  {
+    type: "page",
+    key: "edit-companies",
+    route: `${PAGES.editCompany}/:id`,
+    component: <CompanyDetail />,
+  },
+  {
+    type: "page",
+    key: "new-township",
+    route: PAGES.newTownship,
+    component: <TownshipDetail />,
+  },
+  {
+    type: "page",
+    key: "edit-townships",
+    route: `${PAGES.editTownship}/:id`,
+    component: <TownshipDetail />,
   },
   {
     type: "page",

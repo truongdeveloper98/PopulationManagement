@@ -15,10 +15,19 @@ namespace SWECVI.Infrastructure.Data
         public DbSet<User> HospitalUsers { get; set; } = default!;
         public DbSet<AppRole> AppRoles { get; set; } = default!;
         public DbSet<SystemLog> SystemLogs { get; set; } = default!;
-
+        public DbSet<Job> Jobs { get; set; } = default!;
+        public DbSet<Company> Companies {get; set;} = default!;
+        public DbSet<TownShip> TownShips { get; set; } = default!;
+        public DbSet<PaymentInformation> PaymentInformations {  get; set; } = default!;
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<Company>()
+                   .HasMany(e => e.TownShips)
+                   .WithOne(e => e.Company)
+                   .HasForeignKey(e => e.CompanyId);
+                
 
             AddSoftDeleteFilters(builder);
         }
