@@ -19,6 +19,9 @@ namespace SWECVI.Infrastructure.Data
         public DbSet<Company> Companies {get; set;} = default!;
         public DbSet<TownShip> TownShips { get; set; } = default!;
         public DbSet<PaymentInformation> PaymentInformations {  get; set; } = default!;
+        public DbSet<Project> Projects { get; set; } = default!;
+        public DbSet<ProjectInformation> ProjectInformations { get; set; } = default!;
+        public DbSet<ContactInformation> ContactInformations { get; set; } = default!;
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -28,6 +31,10 @@ namespace SWECVI.Infrastructure.Data
                    .WithOne(e => e.Company)
                    .HasForeignKey(e => e.CompanyId);
                 
+            builder.Entity<TownShip>()
+                   .HasMany(e => e.Projects)
+                   .WithOne(e => e.TownShip)
+                   .HasForeignKey(e => e.TownShipId);
 
             AddSoftDeleteFilters(builder);
         }

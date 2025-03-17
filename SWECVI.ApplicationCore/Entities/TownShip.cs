@@ -11,6 +11,7 @@ namespace SWECVI.ApplicationCore.Entities
         public string TownShipId { get; set; } = default!;
         public string Name { get; set; } = default!;
         public int CompanyId { get; set; } = default!;
-        public Company Company { get; set; } = default!;    
+        public Company Company { get; set; } = default!;
+        public ICollection<Project>? Projects { get; set; }
     }
 }

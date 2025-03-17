@@ -14,5 +14,6 @@ namespace SWECVI.ApplicationCore.Interfaces.Services
         Task<bool> DeleteTownShip(int id);
         Task<TownShipDto> GetTownShipById(int id);
         Task<PagedResponseDto<TownShipDto>> GetTownShips(PagedRequestDto model);
+        Task<List<TownShipForSelectionDto>> GetTownShipsForSelection();
     }
 }

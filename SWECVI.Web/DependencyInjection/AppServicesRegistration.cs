@@ -27,6 +27,12 @@ namespace SWECVI.Web.DependencyInjection
             services.AddScoped<ITownShipService, TownShipService>();
             services.AddScoped<IPaymentInformationRepository, PaymentInformationRepository>();
             services.AddScoped<IPaymentInformationService, PaymentInformationService>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<IProjectInformationRepository, ProjectInformationRepository>();
+            services.AddScoped<IProjectInformationService, ProjectInformationService>();
+            services.AddScoped<IContactInformationRepository, ContactInformationRepository>();
+            services.AddScoped<IContactInformationService, ContactInformationService>();
           
             // for caching
             services.AddScoped<ICacheProvider, CacheProvider>();

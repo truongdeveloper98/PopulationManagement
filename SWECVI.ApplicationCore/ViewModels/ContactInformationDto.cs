@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWECVI.ApplicationCore.Entities
+namespace SWECVI.ApplicationCore.ViewModels
 {
-    public class ContactInformation : BaseEntity
+    public class ContactInformationDto
     {
+        public int Id { get; set; }
         public string TownName { get; set; } = default!;
         public string Address { get; set; } = default!;
         public string? AddressForPay { get; set; }
@@ -16,6 +17,6 @@ namespace SWECVI.ApplicationCore.Entities
         public string? Introduce { get; set; }
         public DateTime DateLock { get; set; }
         public int DepartmentId { get; set; }
-        public Department Department { get; set; } = default!;
+        public string? DerpartmentName { get; set; }
     }
 }
