@@ -23,6 +23,8 @@ import findings from './finding.reducer';
 import job from './job.reducer';
 import company from './company.reducer';
 import township from './township.reducer';
+import project from './project.reducer';
+import projectInformation from './projectInformation.reducer';
 
 const appReducer = combineReducers({
   auth,
@@ -45,7 +47,10 @@ const appReducer = combineReducers({
   settings,
   job,
   company,
-  township
+  township,
+  project,
+  projectInformation
+
 });
 
 const rootReducer = (state, action) => {

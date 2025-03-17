@@ -55,6 +55,11 @@ import Company from "features/company";
 import CompanyDetail from "features/company-detail";
 import Township from "features/township"
 import TownshipDetail from "features/township-detail";
+import Project from "features/project";
+import ProjectInformation from "features/projectInformation";
+import ProjectInformationDetail from "features/projectInformation-detail";
+
+
 
 const routes = [
   {
@@ -141,6 +146,24 @@ const routes = [
     route: PAGES.township,
     icon: <Icon fontSize="medium">people</Icon>,
     component: <Township />,
+  },
+  {
+    type: "tab",
+    name: "Project",
+    key: "project",
+    fillter: "hospital",
+    route: PAGES.project,
+    icon: <Icon fontSize="medium">people</Icon>,
+    component: <Project />,
+  },
+  {
+    type: "tab",
+    name: "ProjectInformation",
+    key: "projectInformation",
+    fillter: "hospital",
+    route: PAGES.projectInformation,
+    icon: <Icon fontSize="medium">people</Icon>,
+    component: <ProjectInformation />,
   },
   {
     type: "tab",
@@ -276,6 +299,30 @@ const routes = [
     key: "edit-townships",
     route: `${PAGES.editTownship}/:id`,
     component: <TownshipDetail />,
+  },
+  // {
+  //   type: "page",
+  //   key: "new-project",
+  //   route: PAGES.newProject,
+  //   component: <ProjectDetail />,
+  // },
+  // {
+  //   type: "page",
+  //   key: "edit-projects",
+  //   route: `${PAGES.editProject}/:id`,
+  //   component: <ProjectDetail />,
+  // },
+  {
+    type: "page",
+    key: "new-projectInformation",
+    route: PAGES.newProjectInformation,
+    component: <ProjectInformationDetail />,
+  },
+  {
+    type: "page",
+    key: "edit-projectInformations",
+    route: `${PAGES.editProjectInformation}/:id`,
+    component: <ProjectInformationDetail />,
   },
   {
     type: "page",

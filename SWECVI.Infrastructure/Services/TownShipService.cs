@@ -120,6 +120,17 @@ namespace SWECVI.Infrastructure.Services
 
         }
 
+        public async Task<List<TownShipForSelectionDto>> GetTownShipsForSelection()
+        {
+            var township = await _townshipRepository.QueryAndSelectAsync(selector: x => new TownShipForSelectionDto()
+            {
+                Id = x.Id,
+                Name = x.Name,
+            });
+
+            return township.ToList();
+        }
+
         public async Task<bool> UpdateTownShip(int id, TownShipDto model)
         {
             var township = await _townshipRepository.Get(id);

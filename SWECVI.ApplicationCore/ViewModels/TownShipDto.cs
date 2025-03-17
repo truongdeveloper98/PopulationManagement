@@ -14,4 +14,10 @@ namespace SWECVI.ApplicationCore.ViewModels
         public string? CompanyName { get; set; }
         public string? CompanyId { get; set; }
     }
+
+    public class TownShipForSelectionDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = default!;
+    }
 }
