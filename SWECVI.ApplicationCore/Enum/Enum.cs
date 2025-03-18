@@ -19,6 +19,11 @@ namespace SWECVI.ApplicationCore
             Saturday = 5,
             Sunday = 6,
         }
+        public enum BuildingStatus
+        {
+            Open = 0,
+            Close = 1,
+        }
         public enum StatusApartment
         {
             Empty = 0,

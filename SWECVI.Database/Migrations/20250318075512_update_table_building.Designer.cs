@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SWECVI.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using SWECVI.Infrastructure.Data;
 namespace SWECVI.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250318075512_update_table_building")]
+    partial class update_table_building
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -806,6 +809,9 @@ namespace SWECVI.Database.Migrations
                     b.Property<int>("BuildingId")
                         .HasColumnType("int");
 
+                    b.Property<int>("BuildingInformationId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -828,9 +834,9 @@ namespace SWECVI.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuildingId");
+                    b.HasIndex("BuildingInformationId");
 
-                    b.ToTable("FloorInformations");
+                    b.ToTable("FloorInformation");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Job", b =>
@@ -1357,7 +1363,7 @@ namespace SWECVI.Database.Migrations
                 {
                     b.HasOne("SWECVI.ApplicationCore.Entities.BuildingInformation", "BuildingInformation")
                         .WithMany("Floors")
-                        .HasForeignKey("BuildingId")
+                        .HasForeignKey("BuildingInformationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

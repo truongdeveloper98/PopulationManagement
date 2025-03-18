@@ -33,7 +33,13 @@ namespace SWECVI.Web.DependencyInjection
             services.AddScoped<IProjectInformationService, ProjectInformationService>();
             services.AddScoped<IContactInformationRepository, ContactInformationRepository>();
             services.AddScoped<IContactInformationService, ContactInformationService>();
-          
+            services.AddScoped<IBuildingRepository, BuildingRepository>();
+            services.AddScoped<IBuildingService, BuildingService>();
+            services.AddScoped<IFloorRepository, FloorRepository>();
+            services.AddScoped<IFloorService, FloorService>();
+
+
+
             // for caching
             services.AddScoped<ICacheProvider, CacheProvider>();
             services.AddScoped<ICacheService, CacheService>();
