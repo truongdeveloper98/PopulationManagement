@@ -29,6 +29,5 @@ namespace SWECVI.ApplicationCore.Entities.Building_Resident
         public ICollection<ApartmentInService>? ApartmentInServices { get; set; }
         public ICollection<PeopleOfApartment>? PeopleOfApartments { get; set; }
         public ICollection<Vehicle>? Vehicles { get; set; }
-        public ICollection<VehicleCard>? VehicleCards { get; set; }
     }
 }

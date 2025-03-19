@@ -6,6 +6,7 @@
     <RuntimeIdentifiers>linux-x64;win-x64;osx-x64</RuntimeIdentifiers>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>cb56cf42-afa1-4a41-aa48-403de37b537b</UserSecretsId>
   </PropertyGroup>
 
   <!-- Removing content files from being included in the publish output -->

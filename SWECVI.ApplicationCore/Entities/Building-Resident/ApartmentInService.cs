@@ -8,10 +8,10 @@ namespace SWECVI.ApplicationCore.Entities.Building_Resident
 {
     public class ApartmentInService : BaseEntity
     {
-        public int DepartmentId { get; set; }
+        public int ApartmentId { get; set; }
         public Apartment? Apartment { get; set; } 
         public int ServiceId { get; set; }
-        public Service? ServiceApartment { get; set; } 
+        public Service? Service { get; set; } 
 
     }
 }

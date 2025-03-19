@@ -22,7 +22,6 @@ namespace SWECVI.ApplicationCore.Entities.Building_Resident
         public DateTime ApplyFeeDate { get; set; }
         public DateTime EndFeeDate { get; set; }
         public FeeLevel FeeLevel { get; set; }
-        public BuildingInformation? Building { get; set; }
         public Apartment? Apartment { get; set; }
         public AppUser? AppUser { get; set; }
         public Service? Service { get; set; }

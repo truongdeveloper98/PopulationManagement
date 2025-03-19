@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SWECVI.ApplicationCore.Entities;
+using SWECVI.ApplicationCore.Entities.Building_Resident;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -24,6 +25,16 @@ namespace SWECVI.Infrastructure.Data
         public DbSet<ContactInformation> ContactInformations { get; set; } = default!;
         public DbSet<BuildingInformation> BuildingInformations {  get; set; } = default!;
         public DbSet<FloorInformation> FloorInformations { get; set; } = default!;
+        public DbSet<Apartment> Apartments { get; set; } = default!;
+        public DbSet<Vehicle> Vehicles { get; set; } = default!;
+        public DbSet<VehicleCard> VehicleCards { get; set; } = default!;
+        public DbSet<Department> Departments { get; set; } = default!;
+        public DbSet<Staff> Staffs { get; set; } = default!;
+        public DbSet<ApartmentInService> ApartmentInServices { get; set; } = default!;
+        public DbSet<DocumentOfApartment> DocumentOfApartments { get; set; } = default!;
+        public DbSet<PeopleOfApartment> PeopleOfApartments { get; set; } = default!;
+        public DbSet<PriceList> PriceLists { get; set; } = default!;
+        public DbSet<Service> Services { get; set; } = default!;
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -37,10 +48,51 @@ namespace SWECVI.Infrastructure.Data
                    .HasMany(e => e.Projects)
                    .WithOne(e => e.TownShip)
                    .HasForeignKey(e => e.TownShipId);
+
             builder.Entity<BuildingInformation>()
                    .HasMany(e => e.Floors)
                    .WithOne(e => e.BuildingInformation)
                    .HasForeignKey(e => e.BuildingId);
+
+            builder.Entity<BuildingInformation>()
+                   .HasMany(e => e.Apartments)
+                   .WithOne(e => e.BuildingInformation)
+                   .HasForeignKey(e => e.BuildingId);
+
+            builder.Entity<FloorInformation>()
+                   .HasMany(e => e.Apartments)
+                   .WithOne(e => e.FloorInformation)
+                   .HasForeignKey (e => e.FloorId);
+
+            builder.Entity<Department>()
+                   .HasMany(e => e.Staffs)
+                   .WithOne(e => e.Department)
+                   .HasForeignKey(e => e.DepartmentId);
+
+            builder.Entity<Apartment>()
+                   .HasMany(e => e.ApartmentInServices)
+                   .WithOne(e => e.Apartment)
+                   .HasForeignKey(e => e.ApartmentId);
+
+            builder.Entity<Apartment>()
+                   .HasMany(e => e.PeopleOfApartments)
+                   .WithOne(e => e.Apartment)
+                   .HasForeignKey(e => e.ApartmentId);
+
+            builder.Entity<Apartment>()
+                   .HasMany(e => e.Vehicles)
+                   .WithOne(e => e.Apartment)
+                   .HasForeignKey(e => e.Apartment);
+
+            builder.Entity<Service>()
+                   .HasMany(e => e.ApartmentInServices)
+                   .WithOne(e => e.Service)
+                   .HasForeignKey(e => e.ServiceId);
+
+            builder.Entity<Service>()
+                   .HasMany(e => e.Vehicles)
+                   .WithOne(e => e.Service)
+                   .HasForeignKey(e => e.ServiceId);
 
             AddSoftDeleteFilters(builder);
         }

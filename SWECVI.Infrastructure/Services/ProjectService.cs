@@ -29,14 +29,16 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> CreateProject(ProjectDto model)
         {
-            var township = _townshipRepository.FirstOrDefault(x => x.Name == model.TownShipId);
-            var user = _userRepository.FirstOrDefault(x => x.FirstName == model.ManagerId);
+            var township = _townshipRepository.FirstOrDefault(x => x.Name == model.TownShipName);
 
             if (township == null)
             {
                 throw new Exception("Can not find the township!");
             }
-            else if (user == null) 
+
+            var user = _userRepository.FirstOrDefault(x => x.FirstName == model.ManagerId);
+
+            if (user == null) 
             {
                 throw new Exception("Can not find the user!");    
             }
