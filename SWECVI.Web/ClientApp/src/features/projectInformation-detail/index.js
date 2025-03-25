@@ -25,12 +25,14 @@ import { useParams } from 'react-router-dom';
 import REG_EXP from 'constants/regExp';
 import useProjectInformationDetail from './hooks/useProjectInformationDetail';
 import { namespace } from 'stylis';
+import { Note } from '@mui/icons-material';
 
 const projectInformationSchema = Yup.object().shape({
-  name: Yup.string()
+  content: Yup.string()
     .matches(REG_EXP.projectInformationName, 'Project Information Name is not valid')
     .required('Required'),
-  description: Yup.string().required("Required"),
+  quantity: Yup.string().required("Required"),
+  note: Yup.string().required("Required"),
 
 });
 

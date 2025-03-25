@@ -40,7 +40,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> DeletePaymentInformation(int id)
         {
-           var paymentInformation = await _paymentInformationRepository.Get(id);
+           var paymentInformation = await _paymentInformationRepository.Get(x => x.Id == id);
 
             if(paymentInformation == null)
             {
@@ -98,7 +98,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<PaymentInformationDto> GetPaymentInformationById(int id)
         {
-            var paymentInformation = await _paymentInformationRepository.Get(id);
+            var paymentInformation = await _paymentInformationRepository.Get(x => x.Id == id);
 
             if (paymentInformation == null)
             {
@@ -120,7 +120,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> UpdatePaymentInformation(int id, PaymentInformationDto model)
         {
-            var paymentInformation = await _paymentInformationRepository.Get(id);
+            var paymentInformation = await _paymentInformationRepository.Get(x => x.Id == id);
 
             if(paymentInformation == null)
             {

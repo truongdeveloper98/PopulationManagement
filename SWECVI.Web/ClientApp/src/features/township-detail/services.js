@@ -40,13 +40,10 @@ export const getTownshipRequest = async (id, callback) => {
 };
 
 export const getTownshipForSelection = async () => {
-  console.log(12345)
   const { dispatch } = store;
   try {
     dispatch(requested());
-    console.log(1234567)
     const response = await API.townshipsForSelection();
-    console.log(1245454, response)
     if (response.data) {
           dispatch(townshipSelectionSuccess(response.data));
         }

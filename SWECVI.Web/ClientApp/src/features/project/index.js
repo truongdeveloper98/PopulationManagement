@@ -40,10 +40,10 @@ export default function Project() {
       id: 'phoneNumber', 
       header: 'PhoneNumber',
     }),
-    columnHelper.accessor('description', {
-      id: 'description', 
-      header: 'Description',
-    }),
+    // columnHelper.accessor('description', {
+    //   id: 'description', 
+    //   header: 'Description',
+    // }),
     columnHelper.accessor('managerName', {
       id: 'managerName',
       header: 'ManagerName',

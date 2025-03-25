@@ -27,6 +27,38 @@ export default function Department() {
       id: 'name',
       header: 'Department Name',
     }),
+    columnHelper.accessor('departmentId', {
+      id: 'departmentId',
+      header: 'Department Id',
+    }),
+    columnHelper.accessor('phoneNumber', {
+      id: 'phoneNumber',
+      header: 'Phone Number',
+    }),
+    columnHelper.accessor('email', {
+      id: 'email',
+      header: 'Email',
+    }),
+    columnHelper.accessor('managerName', {
+      id: 'managerName',
+      header: 'Manager Name',
+    }),
+    columnHelper.accessor('isStatus', {
+      id: 'isStatus',
+      header: 'IsStatus',
+    }),
+    columnHelper.accessor('isCommentStatus', {
+      id: 'isCommentStatus',
+      header: 'IsCommentStatus',
+    }),
+    columnHelper.accessor('isNotifyStatus', {
+      id: 'isNotifyStatus',
+      header: 'IsNotifyStatus',
+    }),
+    columnHelper.accessor('isReceiveJobStatus', {
+      id: 'isReceiveJobStatus',
+      header: 'IsReceiveJobStatus',
+    }),
     columnHelper.accessor('', {
       id: 'edit',
       header: () => 'Edit',

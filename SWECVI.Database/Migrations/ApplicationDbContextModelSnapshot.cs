@@ -1118,6 +1118,64 @@ namespace SWECVI.Database.Migrations
                     b.ToTable("TownShips");
                 });
 
+            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Ultity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Commitment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OpenDate")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UltityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UseTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ultity", (string)null);
+                });
+
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -1449,25 +1507,6 @@ namespace SWECVI.Database.Migrations
                 {
                     b.Navigation("TownShips");
                 });
-
-            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Department", b =>
-                {
-                    b.Navigation("ContactInformationManager")
-                        .IsRequired();
-
-                    b.Navigation("Staffs");
-                });
-
-            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.FloorInformation", b =>
-                {
-                    b.Navigation("Apartments");
-                });
-
-            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.TownShip", b =>
-                {
-                    b.Navigation("Projects");
-                });
-#pragma warning restore 612, 618
         }
     }
 }

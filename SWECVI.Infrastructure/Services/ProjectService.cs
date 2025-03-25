@@ -29,14 +29,14 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> CreateProject(ProjectDto model)
         {
-            var township = _townshipRepository.FirstOrDefault(x => x.Name == model.TownShipName);
+            var township = _townshipRepository.FirstOrDefault(x => x.Id == model.TownShipId);
 
             if (township == null)
             {
                 throw new Exception("Can not find the township!");
             }
 
-            var user = _userRepository.FirstOrDefault(x => x.FirstName == model.ManagerId);
+            var user = _userRepository.FirstOrDefault(x => x.Identity.Id == model.ManagerId, null, "Identity");
 
             if (user == null) 
             {
@@ -64,7 +64,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> DeleteProject(int id)
         {
-            var project = await _projectRepository.Get(id);
+            var project = await _projectRepository.Get(x => x.Id == id);
 
             if (project == null)
             {
@@ -78,21 +78,23 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> UpdateProject(int id, ProjectDto model)
         {
-            var project = await _projectRepository.Get(id);
+            var project = await _projectRepository.Get(x => x.Id == id);
 
             if (project == null)
             {
                 throw new Exception($"Can not find the project with id = {id}");
             }
 
-            var township = _townshipRepository.FirstOrDefault(x => x.Name == model.TownShipId);
-            var user = _userRepository.FirstOrDefault(x => x.FullName == model.ManagerId);
+            var township = _townshipRepository.FirstOrDefault(x => x.Id == model.TownShipId);
 
             if (township == null)
             {
                 throw new Exception("Can not find the township!");
             }
-            else if (user == null)
+
+            var user = _userRepository.FirstOrDefault(x => x.Identity.Id == model.ManagerId, null, "Identity");
+
+            if (user == null)
             {
                 throw new Exception("Can not find the user!");
             }
@@ -116,26 +118,26 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<ProjectDto> GetProjectById(int id)
         {
-            var project = await _projectRepository.Get(id, "TownShip");
+            var project = await _projectRepository.Get(x=>x.Id == id, "TownShip,Manager");
 
             if(project == null)
-            {
+            { 
                 throw new Exception($"Can not find the project with id = {id}");
-            }
+            } 
 
             var result = new ProjectDto()
             {
                 Id = project.Id,
                 ProjectId = project.ProjectId,
                 Name = project.Name,
-                TownShipId = project.TownShip.Name,
+                TownShipId = project.TownShip.Id,
                 TownShipName = project.TownShip.Name,
                 OperationId = project.OperationId,
                 Description = project.Description,
                 Address = project.Address,
                 PhoneNumber = project.PhoneNumber,
                 Email = project.Email,
-                ManagerId = project.Manager.UserName,
+                ManagerId = project.Manager.Id,
                 ManagerName = project.Manager.UserName ?? string.Empty,
                 DateLock = project.DateLock,
             };
@@ -165,11 +167,11 @@ namespace SWECVI.Infrastructure.Services
                 OperationId = i.OperationId,
                 Address = i.Address,
                 Email = i.Email,
-                ManagerId = i.Manager.UserName,
+                ManagerId = i.ManagerId,
                 ManagerName = i.Manager.UserName ?? string.Empty,
                 PhoneNumber=i.PhoneNumber,
                 ProjectId = i.ProjectId,
-                TownShipId = i.TownShip.Name,
+                TownShipId = i.TownShipId,
                 TownShipName = i.TownShip.Name,
                 DateLock = i.DateLock
             };

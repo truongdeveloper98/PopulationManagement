@@ -25,6 +25,8 @@ import company from './company.reducer';
 import township from './township.reducer';
 import project from './project.reducer';
 import projectInformation from './projectInformation.reducer';
+import staff from './staff.reducer';
+import ultity from './ultity.reducer';
 
 const appReducer = combineReducers({
   auth,
@@ -49,7 +51,10 @@ const appReducer = combineReducers({
   company,
   township,
   project,
-  projectInformation
+  projectInformation,
+  staff,
+  ultity
+
 
 });
 

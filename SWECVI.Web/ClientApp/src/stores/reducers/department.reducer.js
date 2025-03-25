@@ -11,6 +11,7 @@ const initialState = {
   isLoading: false,
   error: undefined,
   success: undefined,
+  managerSelections: [],
 };
 
 const departmentsSlice = createSlice({
@@ -25,6 +26,14 @@ const departmentsSlice = createSlice({
     departmentsSuccess: (state, action) => {
       state.isLoading = false;
       state.departments = action.payload;
+    },
+    departmentSelectionSuccess: (state, action) => {
+      state.isLoading = false;
+      state.managerSelections = action.payload;
+    },
+    managerSelectionSuccess: (state, action) => {
+      state.isLoading = false;
+      state.managerSelections = action.payload;
     },
     failed: (state, action) => {
       state.isLoading = false;
@@ -42,6 +51,6 @@ const departmentsSlice = createSlice({
 });
 
 export const {
-  requested, failed, succeed, departmentsSuccess, reinitialize,
+  requested, failed, succeed, departmentsSuccess, reinitialize, managerSelectionSuccess, managerSelections
 } = departmentsSlice.actions;
 export default departmentsSlice.reducer;

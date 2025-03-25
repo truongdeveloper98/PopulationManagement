@@ -11,7 +11,7 @@ namespace SWECVI.ApplicationCore.Entities.Building_Resident
     {
         public string VehicleCardCode { get; set; } = default!;
         public TypeOfVehicle TypeOfVehicle { get; set; }
-        public int VehicleId { get; set; }
+        public int VehicleEntityId { get; set; }
         public string? Note { get; set; }
         public Vehicle? Vehicle { get; set; }
     }

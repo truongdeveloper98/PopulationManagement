@@ -123,192 +123,192 @@ export default function ReferencesDetail() {
                   <Grid container spacing={1}>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.parameterId}
-                name="parameterId"
-                label="Parameter Id"
-                placeholder="Parameter Id"
-                onChange={handleChange}
-                error={errors.parameterId}
-              />
+                        value={values.parameterId}
+                        name="parameterId"
+                        label="Parameter Id"
+                        placeholder="Parameter Id"
+                        onChange={handleChange}
+                        error={errors.parameterId}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.parameterNameLogic}
-                name="parameterNameLogic"
-                label="Parameter Name Logic"
-                placeholder="Parameter Name Logic"
-                onChange={handleChange}
-                error={errors.parameterNameLogic}
-              />
+                        value={values.parameterNameLogic}
+                        name="parameterNameLogic"
+                        label="Parameter Name Logic"
+                        placeholder="Parameter Name Logic"
+                        onChange={handleChange}
+                        error={errors.parameterNameLogic}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.displayUnit}
-                name="displayUnit"
-                label="Display Unit"
-                placeholder="Display Unit"
-                onChange={handleChange}
-                error={errors.displayUnit}
-              />
+                        value={values.displayUnit}
+                        name="displayUnit"
+                        label="Display Unit"
+                        placeholder="Display Unit"
+                        onChange={handleChange}
+                        error={errors.displayUnit}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.normalRangeLower}
-                type="number"
-                name="normalRangeLower"
-                label="Normal Range Lower"
-                placeholder="Normal Range Lower"
-                onChange={handleChange}
-                error={errors.normalRangeLower}
-              />
+                        value={values.normalRangeLower}
+                        type="number"
+                        name="normalRangeLower"
+                        label="Normal Range Lower"
+                        placeholder="Normal Range Lower"
+                        onChange={handleChange}
+                        error={errors.normalRangeLower}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.normalRangeUpper}
-                type="number"
-                name="normalRangeUpper"
-                label="Normal Range Upper"
-                placeholder="Normal Range Upper"
-                onChange={handleChange}
-                error={errors.normalRangeUpper}
-              />
+                        value={values.normalRangeUpper}
+                        type="number"
+                        name="normalRangeUpper"
+                        label="Normal Range Upper"
+                        placeholder="Normal Range Upper"
+                        onChange={handleChange}
+                        error={errors.normalRangeUpper}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.mildlyAbnormalRangeLower}
-                type="number"
-                name="mildlyAbnormalRangeLower"
-                label="Mildly Abnormal Range Lower"
-                placeholder="Mildly Abnormal Range Lower"
-                onChange={handleChange}
-                error={errors.mildlyAbnormalRangeLower}
-              />
+                        value={values.mildlyAbnormalRangeLower}
+                        type="number"
+                        name="mildlyAbnormalRangeLower"
+                        label="Mildly Abnormal Range Lower"
+                        placeholder="Mildly Abnormal Range Lower"
+                        onChange={handleChange}
+                        error={errors.mildlyAbnormalRangeLower}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.mildlyAbnormalRangeUpper}
-                type="number"
-                name="mildlyAbnormalRangeUpper"
-                label="Mildly Abnormal Range Upper"
-                placeholder="Mildly Abnormal Range Upper"
-                onChange={handleChange}
-                error={errors.mildlyAbnormalRangeUpper}
-              />
+                        value={values.mildlyAbnormalRangeUpper}
+                        type="number"
+                        name="mildlyAbnormalRangeUpper"
+                        label="Mildly Abnormal Range Upper"
+                        placeholder="Mildly Abnormal Range Upper"
+                        onChange={handleChange}
+                        error={errors.mildlyAbnormalRangeUpper}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.moderatelyAbnormalRangeLower}
-                type="number"
-                name="moderatelyAbnormalRangeLower"
-                label="Moderately Abnormal Range Lower"
-                placeholder="Moderately Abnormal Range Lower"
-                onChange={handleChange}
-                error={errors.moderatelyAbnormalRangeLower}
-              />
+                        value={values.moderatelyAbnormalRangeLower}
+                        type="number"
+                        name="moderatelyAbnormalRangeLower"
+                        label="Moderately Abnormal Range Lower"
+                        placeholder="Moderately Abnormal Range Lower"
+                        onChange={handleChange}
+                        error={errors.moderatelyAbnormalRangeLower}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.moderatelyAbnormalRangeUpper}
-                type="number"
-                name="moderatelyAbnormalRangeUpper"
-                label="Moderately Abnormal Range Upper"
-                placeholder="Moderately Abnormal Range Upper"
-                onChange={handleChange}
-                error={errors.moderatelyAbnormalRangeUpper}
-              />
+                        value={values.moderatelyAbnormalRangeUpper}
+                        type="number"
+                        name="moderatelyAbnormalRangeUpper"
+                        label="Moderately Abnormal Range Upper"
+                        placeholder="Moderately Abnormal Range Upper"
+                        onChange={handleChange}
+                        error={errors.moderatelyAbnormalRangeUpper}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.severelyAbnormalRangeMoreThan}
-                type="number"
-                name="severelyAbnormalRangeMoreThan"
-                label="Severely Abnormal Range More Than"
-                placeholder="Severely Abnormal Range More Than"
-                onChange={handleChange}
-                error={errors.severelyAbnormalRangeMoreThan}
-              />
+                        value={values.severelyAbnormalRangeMoreThan}
+                        type="number"
+                        name="severelyAbnormalRangeMoreThan"
+                        label="Severely Abnormal Range More Than"
+                        placeholder="Severely Abnormal Range More Than"
+                        onChange={handleChange}
+                        error={errors.severelyAbnormalRangeMoreThan}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.severelyAbnormalRangeLessThan}
-                type="number"
-                name="severelyAbnormalRangeLessThan"
-                label="Severely Abnormal Range Less Than"
-                placeholder="Severely Abnormal Range Less Than"
-                onChange={handleChange}
-                error={errors.severelyAbnormalRangeLessThan}
-              />
+                        value={values.severelyAbnormalRangeLessThan}
+                        type="number"
+                        name="severelyAbnormalRangeLessThan"
+                        label="Severely Abnormal Range Less Than"
+                        placeholder="Severely Abnormal Range Less Than"
+                        onChange={handleChange}
+                        error={errors.severelyAbnormalRangeLessThan}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.primaryReference}
-                name="primaryReference"
-                label="Primary Reference"
-                placeholder="Primary Reference"
-                onChange={handleChange}
-                error={errors.primaryReference}
-              />
+                        value={values.primaryReference}
+                        name="primaryReference"
+                        label="Primary Reference"
+                        placeholder="Primary Reference"
+                        onChange={handleChange}
+                        error={errors.primaryReference}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.fistAuthor}
-                name="fistAuthor"
-                label="Fist Author"
-                placeholder="Fist Author"
-                onChange={handleChange}
-                error={errors.fistAuthor}
-              />
+                        value={values.fistAuthor}
+                        name="fistAuthor"
+                        label="Fist Author"
+                        placeholder="Fist Author"
+                        onChange={handleChange}
+                        error={errors.fistAuthor}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                value={values.comment}
-                name="comment"
-                label="Comment"
-                placeholder="Comment"
-                onChange={handleChange}
-                error={errors.comment}
-              />
+                        value={values.comment}
+                        name="comment"
+                        label="Comment"
+                        placeholder="Comment"
+                        onChange={handleChange}
+                        error={errors.comment}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <Selector
-                disableClearable
-                key={values?.departmentName}
-                defaultValue={values?.departmentName}
-                value={values?.departmentName}
-                label="Department Name"
-                options={departments.items.map((item) => item.name)}
-                onChange={(value) => setFieldValue(
-                  'departmentName',
-                  departments.items.find((item) => item.name === value).name,
-                )}
-              />
+                        disableClearable
+                        key={values?.departmentName}
+                        defaultValue={values?.departmentName}
+                        value={values?.departmentName}
+                        label="Department Name"
+                        options={departments.items.map((item) => item.name)}
+                        onChange={(value) => setFieldValue(
+                          'departmentName',
+                          departments.items.find((item) => item.name === value).name,
+                        )}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <Selector
-                disableClearable
-                key={values?.genderName}
-                defaultValue={values?.genderName}
-                label="Gender"
-                onChange={(value) => setFieldValue(
-                  'genderName',
-                  genders.find((item) => item.name === value).name,
-                )}
-                options={genders.map((item) => item.name)}
-                value={values?.genderName}
-              />
+                        disableClearable
+                        key={values?.genderName}
+                        defaultValue={values?.genderName}
+                        label="Gender"
+                        onChange={(value) => setFieldValue(
+                          'genderName',
+                          genders.find((item) => item.name === value).name,
+                        )}
+                        options={genders.map((item) => item.name)}
+                        value={values?.genderName}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormControlLabel
-                label="Is Index"
-                control={(
-                  <Switch
+                        label="Is Index"
+                        control={(
+                          <Switch
                             checked={values.isIndex}
                             onChange={(e) => setFieldValue('isIndex', e.target.checked)}
                             color="primary"
                             name="isIndex"
                           />
                         )}
-              />
+                      />
                     </Grid>
                   </Grid>
                 </MDBox>

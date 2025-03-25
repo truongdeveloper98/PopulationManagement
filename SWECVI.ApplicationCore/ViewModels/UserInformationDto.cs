@@ -20,4 +20,10 @@ namespace SWECVI.ApplicationCore.ViewModels
         public bool IsActive { set; get; } = true;
         public AppUser? AppUser { get; set; }
     }
+
+    public class UserForSelectionDto
+    {
+        public int Id { get; set; }
+        public string FullName { get; set; } = default!;
+    }
 }

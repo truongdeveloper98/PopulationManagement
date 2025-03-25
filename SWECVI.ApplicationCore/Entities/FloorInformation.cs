@@ -12,7 +12,7 @@ namespace SWECVI.ApplicationCore.Entities
         public string Name { get; set; } = default!;
         public string FloorId { get; set; } = default!;
         public int BuildingId { get; set; }
-        public BuildingInformation BuildingInformation { get; set; } = default!;
+        public BuildingInformation BuildingInformation { get; set; }
         public ICollection<Apartment> Apartments { get; set; } = default!;
     }
 }

@@ -110,4 +110,19 @@ public class UserController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
+    [Route("api/user-management/users-for-selection")]
+    [HttpGet]
+    public async Task<IActionResult> GetUserForSelection()
+    {
+        try
+        {
+            var result = await _userService.GetUserForSelection();
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

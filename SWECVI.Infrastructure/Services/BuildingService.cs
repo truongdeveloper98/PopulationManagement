@@ -33,7 +33,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> DeleteBuilding(int id)
         {
-            var building = await _buildingRepository.Get(id);
+            var building = await _buildingRepository.Get(x => x.Id == id);
 
             if (building == null)
             {
@@ -89,7 +89,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> UpdateBuilding(int id, BuildingDto model)
         {
-            var building = await _buildingRepository.Get(id);
+            var building = await _buildingRepository.Get(x => x.Id == id);
 
             if (building == null)
             {
@@ -107,7 +107,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<BuildingDto> GetById(int id)
         {
-            var building = await _buildingRepository.Get(id);
+            var building = await _buildingRepository.Get(x => x.Id == id);
 
             if (building == null)
             {

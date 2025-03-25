@@ -26,6 +26,10 @@ const usersSlice = createSlice({
       state.isLoading = false;
       state.users = action.payload;
     },
+    userSelectionSuccess: (state, action) => {
+      state.isLoading = false;
+      state.userSelection = action.payload;
+    },
     failed: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;

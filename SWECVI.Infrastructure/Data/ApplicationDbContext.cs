@@ -29,7 +29,8 @@ namespace SWECVI.Infrastructure.Data
         public DbSet<Vehicle> Vehicles { get; set; } = default!;
         public DbSet<VehicleCard> VehicleCards { get; set; } = default!;
         public DbSet<Department> Departments { get; set; } = default!;
-        public DbSet<Staff> Staffs { get; set; } = default!;
+        public DbSet<StaffUser> StaffUsers { get; set; } = default!;
+        public DbSet<Ultity> Ultities { get; set; } = default!;
         public DbSet<ApartmentInService> ApartmentInServices { get; set; } = default!;
         public DbSet<DocumentOfApartment> DocumentOfApartments { get; set; } = default!;
         public DbSet<PeopleOfApartment> PeopleOfApartments { get; set; } = default!;
@@ -54,15 +55,19 @@ namespace SWECVI.Infrastructure.Data
                    .WithOne(e => e.BuildingInformation)
                    .HasForeignKey(e => e.BuildingId);
 
-            builder.Entity<BuildingInformation>()
-                   .HasMany(e => e.Apartments)
-                   .WithOne(e => e.BuildingInformation)
-                   .HasForeignKey(e => e.BuildingId);
-
             builder.Entity<FloorInformation>()
                    .HasMany(e => e.Apartments)
                    .WithOne(e => e.FloorInformation)
                    .HasForeignKey (e => e.FloorId);
+
+            builder.Entity<Department>()
+                   .ToTable("Department");
+
+            builder.Entity<StaffUser>()
+                   .ToTable("Staff");
+
+            builder.Entity<Ultity>()
+                   .ToTable("Ultity");
 
             builder.Entity<Department>()
                    .HasMany(e => e.Staffs)
@@ -82,17 +87,17 @@ namespace SWECVI.Infrastructure.Data
             builder.Entity<Apartment>()
                    .HasMany(e => e.Vehicles)
                    .WithOne(e => e.Apartment)
-                   .HasForeignKey(e => e.Apartment);
+                   .HasForeignKey(e => e.ApartmentId);
 
             builder.Entity<Service>()
                    .HasMany(e => e.ApartmentInServices)
                    .WithOne(e => e.Service)
                    .HasForeignKey(e => e.ServiceId);
 
-            builder.Entity<Service>()
-                   .HasMany(e => e.Vehicles)
-                   .WithOne(e => e.Service)
-                   .HasForeignKey(e => e.ServiceId);
+            builder.Entity<VehicleCard>()
+                   .HasOne(e => e.Vehicle)
+                   .WithMany()
+                   .HasForeignKey(e => e.VehicleEntityId);
 
             AddSoftDeleteFilters(builder);
         }

@@ -76,7 +76,7 @@ namespace SWECVI.ApplicationCore.DomainServices
 
         public async Task UpdateUser(int id, UserInformationDto userModel)
         {
-            var user = await _userRepo.Get(id);
+            var user = await _userRepo.Get(x => x.Id == id);
 
             if (user == null)
             {
@@ -166,7 +166,7 @@ namespace SWECVI.ApplicationCore.DomainServices
 
         public async Task ActiveUser(int id)
         {
-            var user = await _userRepo.Get(id);
+            var user = await _userRepo.Get(x => x.Id == id);
             if (user == null)
             {
                 throw new Exception("User not found");
@@ -177,7 +177,7 @@ namespace SWECVI.ApplicationCore.DomainServices
 
         public async Task InactiveUser(int id)
         {
-            var user = await _userRepo.Get(id);
+            var user = await _userRepo.Get(x => x.Id == id);
 
             if (user == null)
             {
@@ -247,7 +247,7 @@ namespace SWECVI.ApplicationCore.DomainServices
 
         public async Task<UserInformationDto> GetUserById(int id)
         {
-            var user = await _userRepo.Get(id, includeProperties: "Identity");
+            var user = await _userRepo.Get(x => x.Id == id, includeProperties: "Identity");
 
             if (user == null)
             {
@@ -280,6 +280,24 @@ namespace SWECVI.ApplicationCore.DomainServices
             var user = await _userRepo.Get(x => x.Identity.Email == userName, includeProperties: "Identity");
 
             return user?.FirstName + " " + user?.LastName;
+        }
+
+        public async Task<List<UserForSelectionDto>> GetUserForSelection()
+        {
+            Expression<Func<User, bool>> filter = i => i.IsActive;
+
+            Expression<Func<User, UserForSelectionDto>> selectorExpression = user => new UserForSelectionDto
+            {
+                Id = user.Identity.Id,
+                FullName = user.FirstName + " " + user.LastName
+            };
+
+            var totalItems = await _userRepo.Count(filter);
+
+            var items = await _userRepo
+                .QueryAndSelectAsync(selector: selectorExpression,filter,null, "Identity");
+
+            return items.ToList();
         }
     }
 }

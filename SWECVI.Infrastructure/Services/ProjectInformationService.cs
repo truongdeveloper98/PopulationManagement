@@ -37,7 +37,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> DeleteProjecInformation(int id)
         {
-            var projectInformation = await _projectInformationRepository.Get(id);
+            var projectInformation = await _projectInformationRepository.Get(x => x.Id == id);
 
             if (projectInformation == null)
             {
@@ -93,7 +93,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<ProjectInformationDto> GetProjectInformationById(int id)
         {
-            var projectInformation = await _projectInformationRepository.Get(id);
+            var projectInformation = await _projectInformationRepository.Get(x => x.Id == id);
 
             if(projectInformation == null)
             {
@@ -113,7 +113,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> UpdateProjectInformation(int id, ProjectInformationDto model)
         {
-            var projectInformation = await _projectInformationRepository.Get(id);
+            var projectInformation = await _projectInformationRepository.Get(x => x.Id == id);
 
             if(projectInformation == null)
             {

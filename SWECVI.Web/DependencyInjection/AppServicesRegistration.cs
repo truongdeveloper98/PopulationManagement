@@ -37,6 +37,14 @@ namespace SWECVI.Web.DependencyInjection
             services.AddScoped<IBuildingService, BuildingService>();
             services.AddScoped<IFloorRepository, FloorRepository>();
             services.AddScoped<IFloorService, FloorService>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IStaffRepository, StaffRepository>();
+            services.AddScoped<IStaffService, StaffService>();
+            services.AddScoped<IUltityRepository, UltityRepository>();
+            services.AddScoped<IUltityService, UltityService>();
+            services.AddScoped<IApartmentRepository, ApartmentRepository>();
+            services.AddScoped<IApartmentService, ApartmentService>();
 
 
 

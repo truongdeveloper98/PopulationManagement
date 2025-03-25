@@ -36,7 +36,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> DeleteCompany(int id)
         {
-            var company = await _companyRepository.Get(id);
+            var company = await _companyRepository.Get(x => x.Id == id);
 
             if(company == null)
             {
@@ -102,7 +102,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<CompanyDto> GetCompanyById(int id)
         {
-            var company = await _companyRepository.Get(id);
+            var company = await _companyRepository.Get(x => x.Id == id);
 
             if(company == null)
             {
@@ -120,7 +120,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> UpdateCompany(int id, CompanyDto model)
         {
-            var company = await _companyRepository.Get(id);
+            var company = await _companyRepository.Get(x => x.Id == id);
 
             if (company == null)
             {

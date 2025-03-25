@@ -15,6 +15,16 @@ namespace SWECVI.ApplicationCore.ViewModels
         public string? PhoneNumber { get; set; }
         public string? Email { get; set; }
         public int ManagerId { get; set; }
-        public string ManagerName { get; set; }
+        public string? ManagerName { get; set; }
+        public bool IsStatus { get; set; }
+        public bool IsCommentStatus { get; set; }
+        public bool IsNotifyStatus { get; set; }
+        public bool IsReceiveJobStatus { get; set; }
+    }
+
+    public class DepartmentForSelectionDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = default!;
     }
 }

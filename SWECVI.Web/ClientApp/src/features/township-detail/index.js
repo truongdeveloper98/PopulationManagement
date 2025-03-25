@@ -45,6 +45,7 @@ function TownshipDetail() {
     township, handleCancel, handleSubmitForm, openBackdrop
   } = useTownshipDetail();
 
+
   const townships = useSelector((state) => state.township.townshipSelections) || [];
 
   return (

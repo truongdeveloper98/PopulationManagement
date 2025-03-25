@@ -31,7 +31,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> DeleteJob(int id)
         {
-            var job = await _jobRepository.Get(id);
+            var job = await _jobRepository.Get(x => x.Id == id);
 
             if(job == null)
             {
@@ -45,7 +45,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<JobDto> GetById(int id)
         {
-            var job = await _jobRepository.Get(id);
+            var job = await _jobRepository.Get(x => x.Id == id);
 
             if (job == null)
             {
@@ -105,7 +105,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> UpdateJob(int id, JobDto model)
         {
-            var job = await _jobRepository.Get(id);
+            var job = await _jobRepository.Get(x => x.Id == id);
 
             if (job == null)
             {

@@ -45,7 +45,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> DeleteTownShip(int id)
         {
-            var township = await _townshipRepository.Get(id);
+            var township = await _townshipRepository.Get(x => x.Id == id);
             
             if (township == null)
             {
@@ -59,7 +59,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<TownShipDto> GetTownShipById(int id)
         {
-            var township = await _townshipRepository.Get(id, "Company");
+            var township = await _townshipRepository.Get(x => x.Id == id, "Company");
 
             if(township == null)
             {
@@ -133,7 +133,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> UpdateTownShip(int id, TownShipDto model)
         {
-            var township = await _townshipRepository.Get(id);
+            var township = await _townshipRepository.Get(x => x.Id == id);
 
             if( township == null)
             {

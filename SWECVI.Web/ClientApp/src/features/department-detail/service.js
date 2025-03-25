@@ -1,8 +1,10 @@
 import { store } from 'stores';
-import { failed, requested, succeed } from 'stores/reducers/department.reducer';
+import { failed, requested, succeed, managerSelectionSuccess, departmentSelectionSuccess } from 'stores/reducers/department.reducer';
 import API from './api';
 
 export const updateDepartmentRequest = async (id, data, callback) => {
+
+  console.log(1234, data);
   const { dispatch } = store;
   try {
     dispatch(requested());
@@ -39,7 +41,16 @@ export const getDepartmentRequest = async (id, callback) => {
   }
 };
 
-export const getHospitalsRequest = async () => {
-  const hospitals = await API.getHospitals();
-  return hospitals.data;
+
+export const getManagerForSelection = async () => {
+  const { dispatch } = store;
+  try {
+    dispatch(requested());
+    const response = await API.managersForSelection();
+    if (response.data) {
+          dispatch(managerSelectionSuccess(response.data));
+        }
+  } catch (error) {
+    dispatch(failed(error.response?.data));
+  }
 };

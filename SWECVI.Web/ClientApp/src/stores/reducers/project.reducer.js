@@ -11,7 +11,8 @@ const initialState = {
   isLoading: false,
   error: undefined,
   success: undefined,
-  projectSelections : []
+  projectSelections : [],
+  managerSelections: []
 };
 
 const projectsSlice = createSlice({
@@ -31,6 +32,10 @@ const projectsSlice = createSlice({
       state.isLoading = false;
       state.projectSelections = action.payload;
     },
+    managerSelectionSuccess: (state, action) => {
+      state.isLoading = false;
+      state.managerSelections = action.payload;
+    },
     failed: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
@@ -47,6 +52,7 @@ const projectsSlice = createSlice({
 });
 
 export const {
-  requested, failed, succeed, projectsSuccess, reinitialize, projects, projectSelectionSuccess, projectSelections
+  requested, failed, succeed, projectsSuccess, reinitialize, projects, projectSelectionSuccess, projectSelections,
+   managerSelectionSuccess, managerSelections
 } = projectsSlice.actions;
 export default projectsSlice.reducer;

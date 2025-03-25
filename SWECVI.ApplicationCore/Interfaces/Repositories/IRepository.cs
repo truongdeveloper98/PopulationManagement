@@ -8,8 +8,6 @@ namespace SWECVI.ApplicationCore.Interfaces.Repositories
     {
         Task Add(T obj, bool commit = true);
 
-        Task<T?> Get(int id, string includeProperties = "");
-
         Task<T?> Get(Expression<Func<T, bool>> filter, string includeProperties = "");
 
         Task<List<T>> Get(string? includeProperties = "");

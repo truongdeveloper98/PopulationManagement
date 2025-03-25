@@ -46,7 +46,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> DeleteFloor(int id)
         {
-            var floor = await _floorRepository.Get(id);
+            var floor = await _floorRepository.Get(x => x.Id == id);
 
             if(floor == null)
             {
@@ -105,7 +105,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<FloorDto> GetFloorById(int id)
         {
-            var floor = await _floorRepository.Get(id, "BuildingInformation");
+            var floor = await _floorRepository.Get(x => x.Id == id, "BuildingInformation");
 
             if (floor == null)
             {
@@ -126,7 +126,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> UpdateFloor(int id, FloorDto model)
         {
-            var floor = await _floorRepository.Get(id);
+            var floor = await _floorRepository.Get(x => x.Id == id);
 
             if (floor == null)
             {

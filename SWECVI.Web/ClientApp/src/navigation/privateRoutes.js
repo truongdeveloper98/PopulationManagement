@@ -56,8 +56,13 @@ import CompanyDetail from "features/company-detail";
 import Township from "features/township"
 import TownshipDetail from "features/township-detail";
 import Project from "features/project";
+import ProjectDetail from "features/project-detail";
 import ProjectInformation from "features/projectInformation";
 import ProjectInformationDetail from "features/projectInformation-detail";
+import Staff from "features/staff";
+import StaffDetail from "features/staff-detail";
+import Ultity from "features/ultity";
+import UltityDetail from "features/ultity-detail";
 
 
 
@@ -111,15 +116,7 @@ const routes = [
     icon: <Icon fontSize="medium">people</Icon>,
     component: <Users />,
   },
-  {
-    type: "tab",
-    name: "Hospital",
-    key: "hospital",
-    fillter: "hospital",
-    route: PAGES.hospital,
-    icon: <Icon fontSize="medium">people</Icon>,
-    component: <Hospital />,
-  },
+
   {
     type: "tab",
     name: "Job",
@@ -167,6 +164,24 @@ const routes = [
   },
   {
     type: "tab",
+    name: "Staff",
+    key: "staff",
+    fillter: "hospital",
+    route: PAGES.staff,
+    icon: <Icon fontSize="medium">people</Icon>,
+    component: <Staff />,
+  },
+  {
+    type: "tab",
+    name: "Ultity",
+    key: "ultity",
+    fillter: "hospital",
+    route: PAGES.ultity,
+    icon: <Icon fontSize="medium">people</Icon>,
+    component: <Ultity />,
+  },
+  {
+    type: "tab",
     name: "Department",
     key: "department",
     fillter: "hospital",
@@ -210,36 +225,7 @@ const routes = [
   //   icon: <Icon fontSize="medium">ballot</Icon>,
   //   component: <ExportData />,
   // },
-  {
-    type: "tab",
-    name: "Settings",
-    key: "settings",
-    fillter: "hospital",
-    route: PAGES.settings,
-    icon: <Icon fontSize="medium">ballot</Icon>,
-    component: <ParameterSettings />,
-  },
-  {
-    type: "tab",
-    name: "Finding Structure",
-    key: "finding-structure",
-    fillter: "hospital",
-    route: PAGES.findingStructure,
-    icon: <Icon fontSize="medium">ballot</Icon>,
-    component: <FindingStructure />,
-  },
-  {
-    type: "page",
-    key: "finding-structure",
-    route: PAGES.newFinding,
-    component: <FindingDetail />,
-  },
-  {
-    type: "page",
-    key: "finding-structure",
-    route: `${PAGES.editFinding}/:id`,
-    component: <FindingDetail />,
-  },
+
   {
     type: "page",
     key: "new-assessment",
@@ -326,6 +312,54 @@ const routes = [
   },
   {
     type: "page",
+    key: "new-project",
+    route: PAGES.newProject,
+    component: <ProjectDetail />,
+  },
+  {
+    type: "page",
+    key: "edit-projects",
+    route: `${PAGES.editProject}/:id`,
+    component: <ProjectDetail />,
+  },
+  {
+    type: "page",
+    key: "new-projectInformation",
+    route: PAGES.newProjectInformation,
+    component: <ProjectInformationDetail />,
+  },
+  {
+    type: "page",
+    key: "edit-projectInformations",
+    route: `${PAGES.editProjectInformation}/:id`,
+    component: <ProjectInformationDetail />,
+  },
+  {
+    type: "page",
+    key: "new-staff",
+    route: PAGES.newStaff,
+    component: <StaffDetail />,
+  },
+  {
+    type: "page",
+    key: "edit-staffs",
+    route: `${PAGES.editStaff}/:id`,
+    component: <StaffDetail />,
+  },
+  {
+    type: "page",
+    key: "new-ultity",
+    route: PAGES.newUltity,
+    component: <UltityDetail />,
+  },
+  {
+    type: "page",
+    key: "edit-ultitys",
+    route: `${PAGES.editUltity}/:id`,
+    component: <UltityDetail />,
+  },
+  {
+    type: "page",
     key: "new-manufacturer-dicom",
     route: PAGES.newManufacturerDicom,
     component: <ManufacturerDicomDetail />,
@@ -335,18 +369,6 @@ const routes = [
     key: "edit-manufacturer-dicom",
     route: `${PAGES.editManufacturerDicom}/:id`,
     component: <ManufacturerDicomDetail />,
-  },
-  {
-    type: "page",
-    key: "settings",
-    route: PAGES.newSettings,
-    component: <ParameterSettingsDetail />,
-  },
-  {
-    type: "page",
-    key: "settings",
-    route: `${PAGES.editSettings}/:id`,
-    component: <ParameterSettingsDetail />,
   },
   // {
   //   type: "tab",
@@ -374,26 +396,11 @@ const routes = [
     component: <Python />,
   },
 
-  { type: "divider", key: "divider-1" },
-  // single pages
-  {
-    type: "page",
-    key: "patient-finding",
-    route: `${PAGES.patientFinding}/:hospitalId/:id`,
-    // icon: <Icon fontSize="medium">medical_information</Icon>,
-    component: <PatientFinding />,
-  },
   {
     type: "page",
     key: "new-user",
     route: PAGES.newUser,
     component: <UserDetail />,
-  },
-  {
-    type: "page",
-    key: "new-hospital",
-    route: PAGES.newHospital,
-    component: <HospitalDetail />,
   },
   {
     type: "page",
@@ -406,12 +413,6 @@ const routes = [
     key: "edit-user",
     route: `${PAGES.editUser}/:id`,
     component: <UserDetail />,
-  },
-  {
-    type: "page",
-    key: "edit-hospital",
-    route: `${PAGES.editHospital}/:id`,
-    component: <HospitalDetail />,
   },
   {
     type: "page",

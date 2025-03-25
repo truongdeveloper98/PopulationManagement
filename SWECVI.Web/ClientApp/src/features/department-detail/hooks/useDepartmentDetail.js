@@ -6,13 +6,13 @@ import {
   getDepartmentRequest,
   getHospitalsRequest,
   updateDepartmentRequest,
+  getManagerForSelection
 } from '../service';
 
 const useDepartmentDetail = () => {
   const [department, setDepartment] = useState(undefined);
   const navigate = useNavigate();
   const params = useParams();
-  const [hospitalSuperAdmin, setHospitalSuperAdmin] = useState([]);
   const [openBackdrop, setOpenBackdrop] = useState(false);
 
   useEffect(() => {
@@ -23,17 +23,14 @@ const useDepartmentDetail = () => {
     }
   }, [params?.id]);
 
-  useEffect(() => {
-    getHospitalsRequest()
-      .then((res) => {
-        setHospitalSuperAdmin(res);
-      })
-      .catch((err) => {
-        throw err;
-      });
-  }, []);
+    useEffect(() => {
+      getManagerForSelection();
+      }, []);
+
 
   const handleSubmitForm = async (data) => {
+
+    console.log(6666,data)
     setOpenBackdrop(true);
     if (params?.id) {
       await updateDepartmentRequest(params.id, data, () => {
@@ -51,7 +48,7 @@ const useDepartmentDetail = () => {
   };
 
   return {
-    department, handleCancel, handleSubmitForm, hospitalSuperAdmin, openBackdrop,
+    department, handleCancel, handleSubmitForm, openBackdrop,
   };
 };
 

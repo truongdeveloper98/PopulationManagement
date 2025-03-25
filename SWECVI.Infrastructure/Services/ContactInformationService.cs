@@ -41,7 +41,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> Delete(int id)
         {
-            var contactInformatin = await _contactInformationRepository.Get(id);
+            var contactInformatin = await _contactInformationRepository.Get(x => x.Id == id);
 
             if(contactInformatin == null)
             {
@@ -103,7 +103,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<ContactInformationDto> GetContactById(int id)
         {
-            var contactInformation = await _contactInformationRepository.Get(id);
+            var contactInformation = await _contactInformationRepository.Get(x => x.Id == id);
 
             if (contactInformation == null)
             {
@@ -129,7 +129,7 @@ namespace SWECVI.Infrastructure.Services
 
         public async Task<bool> Update(int id, ContactInformationDto model)
         {
-            var contactInformation = await _contactInformationRepository.Get(id);
+            var contactInformation = await _contactInformationRepository.Get(x => x.Id == id);
 
             if (contactInformation == null)
             {
