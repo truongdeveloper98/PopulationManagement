@@ -14,5 +14,7 @@ namespace SWECVI.ApplicationCore.Entities.Building_Resident
         public int ServiceId { get; set; }
         public DateTime ApplyDate { get; set; }
         public TypeOfFee TypeOfFee { get; set; }
+        public double Price { get; set; }
+        public Service? Service { get; set; }
     }
 }

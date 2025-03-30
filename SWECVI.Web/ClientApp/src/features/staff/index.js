@@ -28,9 +28,9 @@ export default function Staff() {
       id: 'name',
       header: 'name',
     }),
-    columnHelper.accessor('staffId', {
-      id: 'staffId',
-      header: 'staffId',
+    columnHelper.accessor('staffCode', {
+      id: 'staffCode',
+      header: 'staffCode',
     }),
     columnHelper.accessor('email', {
       id: 'email', 
@@ -47,10 +47,6 @@ export default function Staff() {
     columnHelper.accessor('nationalId', {
       id: 'nationalId', 
       header: 'nationalId',
-    }),
-    columnHelper.accessor('address', {
-      id: 'address', 
-      header: 'address',
     }),
     columnHelper.accessor('address', {
       id: 'address', 

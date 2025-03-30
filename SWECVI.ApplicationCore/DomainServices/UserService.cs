@@ -22,7 +22,7 @@ namespace SWECVI.ApplicationCore.DomainServices
             _userRepo = userRepo;
             _userManager = userManager;
         }
-        public async Task CreateUser(UserInformationDto userInformationDto)
+        public async Task<User> CreateUser(UserInformationDto userInformationDto)
         {
             if (string.IsNullOrEmpty(userInformationDto.Password))
             {
@@ -60,7 +60,7 @@ namespace SWECVI.ApplicationCore.DomainServices
                 
                 await _userRepo.Add(user);
                 
-                return;
+                return user;
             }
 
             string errorMessages = "";

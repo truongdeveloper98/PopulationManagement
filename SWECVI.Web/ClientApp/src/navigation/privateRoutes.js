@@ -57,6 +57,8 @@ import Township from "features/township"
 import TownshipDetail from "features/township-detail";
 import Project from "features/project";
 import ProjectDetail from "features/project-detail";
+import PeopleOfApartment from "features/peopleOfApartment";
+import PeopleOfApartmentDetail from "features/peopleOfApartment-detail";
 import ProjectInformation from "features/projectInformation";
 import ProjectInformationDetail from "features/projectInformation-detail";
 import Staff from "features/staff";
@@ -152,6 +154,15 @@ const routes = [
     route: PAGES.project,
     icon: <Icon fontSize="medium">people</Icon>,
     component: <Project />,
+  },
+  {
+    type: "tab",
+    name: "PeopleOfApartment",
+    key: "peopleOfApartment",
+    fillter: "hospital",
+    route: PAGES.peopleOfApartment,
+    icon: <Icon fontSize="medium">people</Icon>,
+    component: <PeopleOfApartment />,
   },
   {
     type: "tab",
@@ -333,6 +344,18 @@ const routes = [
     key: "edit-projectInformations",
     route: `${PAGES.editProjectInformation}/:id`,
     component: <ProjectInformationDetail />,
+  },
+  {
+    type: "page",
+    key: "new-peopleOfApartment",
+    route: PAGES.newPeopleOfApartment,
+    component: <PeopleOfApartmentDetail />,
+  },
+  {
+    type: "page",
+    key: "edit-peopleOfApartment",
+    route: `${PAGES.editPeopleOfApartment}/:id`,
+    component: <PeopleOfApartmentDetail />,
   },
   {
     type: "page",

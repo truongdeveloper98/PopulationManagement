@@ -13,8 +13,8 @@ namespace SWECVI.ApplicationCore.ViewModels
         public string UltityId { get; set; } = default!;
         public string Name { get; set; } = default!;
         public double Price { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
         public string UseTime { get; set; } = default!;
         public Date OpenDate { get; set; }
         public string? Note { get; set; }

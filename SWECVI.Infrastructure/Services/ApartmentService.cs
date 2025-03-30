@@ -140,6 +140,17 @@ namespace SWECVI.Infrastructure.Services
             return result;
         }
 
+        public async Task<List<ApartmentDto>> GetApartmentsForSelection()
+        {
+            var apartment = await _apartmentRepository.QueryAndSelectAsync(selector: x => new ApartmentDto()
+            {
+                Id= x.Id,
+                Name = x.Name,
+            });
+
+            return apartment.ToList();
+        }
+
         public async Task<bool> UpdateApartment(int id, ApartmentDto model)
         {
             var apartment = await _apartmentRepository.Get(x => x.Id == id);

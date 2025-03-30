@@ -24,4 +24,10 @@ namespace SWECVI.ApplicationCore.ViewModels
         public StatusApartment Status { get; set; }
         public string? Description { get; set; }
     }
+
+    public class ApartmentForSelectionDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = default!;
+    }
 }

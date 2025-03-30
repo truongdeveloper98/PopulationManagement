@@ -5,6 +5,8 @@ namespace SWECVI.ApplicationCore.Entities
         public string FirstName { get; set; } = default!;
         public string LastName { get; set; } = default!;
         public string FullName { get; set; } = default!;
+        public string? EmailUser { get; set; }
+        public string? PhoneNumberUser { get; set; }
         public int IdentityId { get; set; }
         public bool IsActive { get; set; } = true;
         public AppUser Identity { get; set; } = default!;

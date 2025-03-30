@@ -14,6 +14,7 @@ const useUltityDetail = () => {
   // const { decodedToken } = useJwt(token);
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const regionValue = useSelector((state) => state.ultity.region);
+  const [valueExport, setValueExport] = useState({ startDate: '', endDate: '', ultity: null });
 
   useEffect(() => {
     if (params.id) {
@@ -24,6 +25,8 @@ const useUltityDetail = () => {
   }, [params?.id]);
 
   const handleSubmitForm = async (data) => {
+
+    console.log(123, data);
     setOpenBackdrop(true);
     if (params?.id) {
       await updateUltityRequest(params.id, data, () => {
@@ -41,7 +44,7 @@ const useUltityDetail = () => {
   };
 
   return {
-    ultity, handleCancel, handleSubmitForm, openBackdrop, regionValue,
+    ultity, handleCancel, handleSubmitForm, openBackdrop, regionValue, valueExport, setValueExport
   };
 };
 

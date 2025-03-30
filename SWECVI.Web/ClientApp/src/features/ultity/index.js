@@ -15,7 +15,7 @@ const columnHelper = createColumnHelper();
 
 export default function Ultity() {
   const {
-    agRef, onCreateUltity, handleEditUltity, handleDeleteUltity,
+    agRef, onCreateUltity, handleEditUltity, handleDeleteUltity, 
   } = useUltity();
   const { t } = useTranslation();
   const ultitys = useSelector((state) => state.ultity.ultitys);

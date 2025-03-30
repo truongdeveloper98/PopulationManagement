@@ -31,7 +31,7 @@ const staffSchema = Yup.object().shape({
   name: Yup.string()
     .matches(REG_EXP.staffName, 'Staff Name is not valid')
     .required('Required'),
-  staffId: Yup.string().required("Required"),
+  staffCode: Yup.string().required("Required"),
   email: Yup.string().required("Required"),
   address: Yup.string().required("Required"),
   phoneNumber: Yup.string().required("Required"),
@@ -59,7 +59,7 @@ function StaffDetail() {
         enableReinitialize
         initialValues={{
           name: staff?.name,
-          staffId: staff?.staffId,
+          staffCode: staff?.staffCode,
           position: staff?.position,
           address: staff?.address,
           phoneNumber: staff?.phoneNumber,
@@ -72,7 +72,7 @@ function StaffDetail() {
         validationSchema={staffSchema}
         onSubmit={(values) => {
           const {
-            name, staffId, position, address, phoneNumber, email, nationalId, departmentId, departmentName
+            name, staffCode, position, address, phoneNumber, email, nationalId, departmentId, departmentName
           } = values;
           const data =
           {
@@ -132,12 +132,12 @@ function StaffDetail() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField
-                        value={values.staffId}
-                        name="staffId"
-                        label="staffId"
-                        placeholder="staffId "
+                        value={values.staffCode}
+                        name="staffCode"
+                        label="staffCode"
+                        placeholder="staffCode "
                         onChange={handleChange}
-                        error={errors.staffId}
+                        error={errors.staffCode}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>

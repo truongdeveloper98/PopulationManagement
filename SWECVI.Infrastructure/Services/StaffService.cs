@@ -78,7 +78,8 @@ namespace SWECVI.Infrastructure.Services
                 DepartmentId = i.DepartmentId,
                 DepartmentName = i.Department.Name,
                 Position = i.Position,
-                NationalId = i.NationalId
+                NationalId = i.NationalId,
+                Address = i.Address
             };
 
             var items = await _staffRepository

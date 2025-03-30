@@ -7,7 +7,8 @@ import {
   FormHelperText,
   Grid,
   FormControlLabel,
-  Switch
+  Switch,
+  TextField
 } from '@mui/material';
 import BaseLayout from 'components/Customized/BaseLayout';
 import FormField from 'components/Customized/FormFiled';
@@ -48,7 +49,7 @@ function UltityDetail() {
   const { t } = useTranslation();
   const params = useParams();
   const {
-    ultity, handleCancel, handleSubmitForm, openBackdrop,
+    ultity, handleCancel, handleSubmitForm, openBackdrop
   } = useUltityDetail();
 
   return (
@@ -148,7 +149,7 @@ function UltityDetail() {
                         error={errors.price}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    {/* <Grid item xs={12} sm={6}>
                       <FormField
                         value={values.startTime}
                         name="startTime"
@@ -157,8 +158,21 @@ function UltityDetail() {
                         onChange={handleChange}
                         error={errors.startTime}
                       />
+                    </Grid> */}
+                    <Grid item xs={3}>
+                      <div>
+                        <TextField
+                          type="time"
+                          fullWidth
+                          name='startTime'
+                          label="Start Time"
+                          value={values.startTime}
+                          InputLabelProps={{ shrink: true }}
+                          onChange={handleChange}
+                        />
+                      </div>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    {/* <Grid item xs={12} sm={6}>
                       <FormField
                         value={values.endTime}
                         name="endTime"
@@ -167,6 +181,19 @@ function UltityDetail() {
                         onChange={handleChange}
                         error={errors.endTime}
                       />
+                    </Grid> */}
+                    <Grid item xs={3}>
+                      <div>
+                        <TextField
+                          type="time"
+                          name='endTime'
+                          fullWidth
+                          label="End Time"
+                          value={values.endTime}
+                          InputLabelProps={{ shrink: true }}
+                          onChange={handleChange}
+                        />
+                      </div>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormField

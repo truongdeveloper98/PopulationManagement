@@ -27,6 +27,7 @@ import project from './project.reducer';
 import projectInformation from './projectInformation.reducer';
 import staff from './staff.reducer';
 import ultity from './ultity.reducer';
+import peopleOfApartment from './peopleOfApartment.reducer';
 
 const appReducer = combineReducers({
   auth,
@@ -53,8 +54,8 @@ const appReducer = combineReducers({
   project,
   projectInformation,
   staff,
-  ultity
-
+  ultity,
+  peopleOfApartment
 
 });
 

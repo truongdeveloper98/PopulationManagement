@@ -21,8 +21,8 @@ namespace SWECVI.ApplicationCore.Entities.Building_Resident
         public PriceCalculationMethod EndPriceCaculationMethod { get; set; }
         public Date ApplyFrom {  get; set; }
         public Date SwitchDay { get; set; }
-        public int ApartmentId { get; set; }
-        public string ApartmentName { get; set; } = default!;
+        //public int ApartmentId { get; set; }
+        //public string ApartmentName { get; set; } = default!;
         public ICollection<ApartmentInService>? ApartmentInServices { get; set; }
         public ICollection<Vehicle>? Vehicles { get; set; }
     }

@@ -1,3 +1,4 @@
+using SWECVI.ApplicationCore.Entities;
 using SWECVI.ApplicationCore.ViewModels;
 
 namespace SWECVI.ApplicationCore.Interfaces.Services
@@ -7,7 +8,7 @@ namespace SWECVI.ApplicationCore.Interfaces.Services
         Task<PagedResponseDto<UserInformationDto>> GetUsers(int currentPage, int pageSize, string? sortColumnDirection, string? sortColumnName, string? textSearch);
         Task<UserInformationDto> GetUserById(int id);
         Task<List<UserForSelectionDto>> GetUserForSelection();
-        Task CreateUser(UserInformationDto model);
+        Task<User> CreateUser(UserInformationDto model);
         Task UpdateUser(int id, UserInformationDto model);
         Task<string?> GetDoctorName(string userName);
         Task ActiveUser(int id);

@@ -14,5 +14,6 @@ namespace SWECVI.ApplicationCore.Interfaces.Services
         Task<bool> DeleteApartment(int id);
         Task<ApartmentDto> GetApartmentById(int id);
         Task<PagedResponseDto<ApartmentDto>> GetAllApartments(PagedRequestDto model);
+        Task<List<ApartmentDto>> GetApartmentsForSelection();
     }
 }

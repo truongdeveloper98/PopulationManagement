@@ -158,6 +158,7 @@ function Patients() {
                       type="date"
                       fullWidth
                       label="End Date"
+                      
                       InputLabelProps={{ shrink: true }}
                       onChange={(e) => setValueExport({ ...valueExport, endDate: e.target.value })}
                     />

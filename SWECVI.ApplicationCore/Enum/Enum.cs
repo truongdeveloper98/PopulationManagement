@@ -80,7 +80,8 @@ namespace SWECVI.ApplicationCore
             Car = 0,
             Bike = 1,
             MotorBike = 2,
-            ElectricBike = 3
+            ElectricBike = 3,
+            ElectricCar = 4
         }
         public enum VehicleColor
         {

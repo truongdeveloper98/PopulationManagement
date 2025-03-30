@@ -278,12 +278,6 @@ namespace SWECVI.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("BuildingId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BuildingInformationId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -300,9 +294,6 @@ namespace SWECVI.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FloorId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("FloorInformationId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
@@ -332,13 +323,11 @@ namespace SWECVI.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuildingInformationId");
-
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("FloorInformationId");
+                    b.HasIndex("FloorId");
 
-                    b.ToTable("Apartment");
+                    b.ToTable("Apartments");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.ApartmentInService", b =>
@@ -349,7 +338,7 @@ namespace SWECVI.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ApartmentId")
+                    b.Property<int>("ApartmentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -357,9 +346,6 @@ namespace SWECVI.Database.Migrations
 
                     b.Property<DateTime>("DeletedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -376,7 +362,41 @@ namespace SWECVI.Database.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("ApartmentInService");
+                    b.ToTable("ApartmentInServices");
+                });
+
+            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.DocumentOfApartment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DocumentOfApartments");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.PeopleOfApartment", b =>
@@ -390,7 +410,7 @@ namespace SWECVI.Database.Migrations
                     b.Property<int>("ApartmentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AppUserId")
+                    b.Property<int>("AppUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -401,9 +421,6 @@ namespace SWECVI.Database.Migrations
 
                     b.Property<DateTime>("Dob")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
@@ -418,9 +435,6 @@ namespace SWECVI.Database.Migrations
                     b.Property<string>("NationalId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Relationship")
                         .HasColumnType("int");
 
@@ -433,7 +447,54 @@ namespace SWECVI.Database.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("PeopleOfApartment");
+                    b.ToTable("PeopleOfApartments");
+                });
+
+            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.PriceList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ApplyDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PriceListCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeOfFee")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("PriceLists");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.Service", b =>
@@ -455,13 +516,6 @@ namespace SWECVI.Database.Migrations
 
                     b.Property<DateTime>("DeletedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DepartmentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -503,7 +557,7 @@ namespace SWECVI.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Service");
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.Vehicle", b =>
@@ -576,11 +630,9 @@ namespace SWECVI.Database.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("BuildingId");
-
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("Vehicle");
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.VehicleCard", b =>
@@ -590,15 +642,6 @@ namespace SWECVI.Database.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ApartmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BuildingId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BuildingInformationId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -622,21 +665,14 @@ namespace SWECVI.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("VehicleId1")
+                    b.Property<int>("VehicleEntityId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApartmentId");
+                    b.HasIndex("VehicleEntityId");
 
-                    b.HasIndex("BuildingInformationId");
-
-                    b.HasIndex("VehicleId1");
-
-                    b.ToTable("VehicleCard");
+                    b.ToTable("VehicleCards");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Company", b =>
@@ -746,7 +782,7 @@ namespace SWECVI.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DepartmentManagerId")
+                    b.Property<int?>("DepartmentManagerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -780,7 +816,7 @@ namespace SWECVI.Database.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ServiceId")
+                    b.Property<int>("StaffId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -790,9 +826,7 @@ namespace SWECVI.Database.Migrations
 
                     b.HasIndex("DepartmentManagerId");
 
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("Department");
+                    b.ToTable("Department", (string)null);
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.FloorInformation", b =>
@@ -1011,13 +1045,22 @@ namespace SWECVI.Database.Migrations
                     b.ToTable("ProjectInformations");
                 });
 
-            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Staff", b =>
+            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.StaffUser", b =>
                 {
-                    b.Property<string>("StaffId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DeletedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
@@ -1025,6 +1068,9 @@ namespace SWECVI.Database.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1040,11 +1086,18 @@ namespace SWECVI.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("StaffId");
+                    b.Property<string>("StaffCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Staff");
+                    b.ToTable("Staff", (string)null);
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.SystemLog", b =>
@@ -1135,8 +1188,8 @@ namespace SWECVI.Database.Migrations
                     b.Property<DateTime>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("time");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -1157,8 +1210,8 @@ namespace SWECVI.Database.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("time");
 
                     b.Property<string>("UltityId")
                         .IsRequired()
@@ -1190,6 +1243,9 @@ namespace SWECVI.Database.Migrations
                     b.Property<DateTime>("DeletedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("EmailUser")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -1209,6 +1265,9 @@ namespace SWECVI.Database.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumberUser")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -1274,10 +1333,6 @@ namespace SWECVI.Database.Migrations
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.Apartment", b =>
                 {
-                    b.HasOne("SWECVI.ApplicationCore.Entities.BuildingInformation", "BuildingInformation")
-                        .WithMany("Apartments")
-                        .HasForeignKey("BuildingInformationId");
-
                     b.HasOne("SWECVI.ApplicationCore.Entities.AppUser", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
@@ -1286,9 +1341,9 @@ namespace SWECVI.Database.Migrations
 
                     b.HasOne("SWECVI.ApplicationCore.Entities.FloorInformation", "FloorInformation")
                         .WithMany("Apartments")
-                        .HasForeignKey("FloorInformationId");
-
-                    b.Navigation("BuildingInformation");
+                        .HasForeignKey("FloorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
 
@@ -1299,17 +1354,19 @@ namespace SWECVI.Database.Migrations
                 {
                     b.HasOne("SWECVI.ApplicationCore.Entities.Building_Resident.Apartment", "Apartment")
                         .WithMany("ApartmentInServices")
-                        .HasForeignKey("ApartmentId");
+                        .HasForeignKey("ApartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SWECVI.ApplicationCore.Entities.Building_Resident.Service", "ServiceApartment")
-                        .WithMany()
+                    b.HasOne("SWECVI.ApplicationCore.Entities.Building_Resident.Service", "Service")
+                        .WithMany("ApartmentInServices")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Apartment");
 
-                    b.Navigation("ServiceApartment");
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.PeopleOfApartment", b =>
@@ -1320,13 +1377,26 @@ namespace SWECVI.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SWECVI.ApplicationCore.Entities.AppUser", "AppUser")
+                    b.HasOne("SWECVI.ApplicationCore.Entities.User", "AppUser")
                         .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Apartment");
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.PriceList", b =>
+                {
+                    b.HasOne("SWECVI.ApplicationCore.Entities.Building_Resident.Service", "Service")
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.Vehicle", b =>
@@ -1341,12 +1411,6 @@ namespace SWECVI.Database.Migrations
                         .WithMany()
                         .HasForeignKey("AppUserId");
 
-                    b.HasOne("SWECVI.ApplicationCore.Entities.BuildingInformation", "Building")
-                        .WithMany("Vehicles")
-                        .HasForeignKey("BuildingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SWECVI.ApplicationCore.Entities.Building_Resident.Service", "Service")
                         .WithMany("Vehicles")
                         .HasForeignKey("ServiceId")
@@ -1357,30 +1421,16 @@ namespace SWECVI.Database.Migrations
 
                     b.Navigation("AppUser");
 
-                    b.Navigation("Building");
-
                     b.Navigation("Service");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.VehicleCard", b =>
                 {
-                    b.HasOne("SWECVI.ApplicationCore.Entities.Building_Resident.Apartment", "Apartment")
-                        .WithMany("VehicleCards")
-                        .HasForeignKey("ApartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SWECVI.ApplicationCore.Entities.BuildingInformation", "BuildingInformation")
-                        .WithMany("VehicleCards")
-                        .HasForeignKey("BuildingInformationId");
-
                     b.HasOne("SWECVI.ApplicationCore.Entities.Building_Resident.Vehicle", "Vehicle")
                         .WithMany()
-                        .HasForeignKey("VehicleId1");
-
-                    b.Navigation("Apartment");
-
-                    b.Navigation("BuildingInformation");
+                        .HasForeignKey("VehicleEntityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Vehicle");
                 });
@@ -1400,13 +1450,7 @@ namespace SWECVI.Database.Migrations
                 {
                     b.HasOne("SWECVI.ApplicationCore.Entities.AppUser", "DepartmentManager")
                         .WithMany()
-                        .HasForeignKey("DepartmentManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SWECVI.ApplicationCore.Entities.Building_Resident.Service", null)
-                        .WithMany("Departments")
-                        .HasForeignKey("ServiceId");
+                        .HasForeignKey("DepartmentManagerId");
 
                     b.Navigation("DepartmentManager");
                 });
@@ -1441,7 +1485,7 @@ namespace SWECVI.Database.Migrations
                     b.Navigation("TownShip");
                 });
 
-            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Staff", b =>
+            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.StaffUser", b =>
                 {
                     b.HasOne("SWECVI.ApplicationCore.Entities.Department", "Department")
                         .WithMany("Staffs")
@@ -1476,13 +1520,7 @@ namespace SWECVI.Database.Migrations
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.BuildingInformation", b =>
                 {
-                    b.Navigation("Apartments");
-
                     b.Navigation("Floors");
-
-                    b.Navigation("VehicleCards");
-
-                    b.Navigation("Vehicles");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.Apartment", b =>
@@ -1491,14 +1529,12 @@ namespace SWECVI.Database.Migrations
 
                     b.Navigation("PeopleOfApartments");
 
-                    b.Navigation("VehicleCards");
-
                     b.Navigation("Vehicles");
                 });
 
             modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Building_Resident.Service", b =>
                 {
-                    b.Navigation("Departments");
+                    b.Navigation("ApartmentInServices");
 
                     b.Navigation("Vehicles");
                 });
@@ -1507,6 +1543,24 @@ namespace SWECVI.Database.Migrations
                 {
                     b.Navigation("TownShips");
                 });
+
+            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.Department", b =>
+                {
+                    b.Navigation("ContactInformationManager");
+
+                    b.Navigation("Staffs");
+                });
+
+            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.FloorInformation", b =>
+                {
+                    b.Navigation("Apartments");
+                });
+
+            modelBuilder.Entity("SWECVI.ApplicationCore.Entities.TownShip", b =>
+                {
+                    b.Navigation("Projects");
+                });
+#pragma warning restore 612, 618
         }
     }
 }
